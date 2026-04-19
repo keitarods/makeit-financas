@@ -162,7 +162,8 @@ export default function FinanciamentoPage() {
             Calculadora de Financiamento Price x SAC
           </CardTitle>
           <CardDescription>
-            Compare parcelas, amortização, saldo devedor e juros pagos entre os sistemas Price e SAC.
+            Compare parcelas, amortização, saldo devedor e juros pagos entre os sistemas Price e
+            SAC.
           </CardDescription>
         </CardHeader>
 
@@ -179,7 +180,9 @@ export default function FinanciamentoPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Quantidade de parcelas</label>
+              <label className="text-sm font-medium text-slate-700">
+                Quantidade de parcelas
+              </label>
               <Input
                 type="text"
                 inputMode="decimal"
@@ -251,7 +254,7 @@ export default function FinanciamentoPage() {
                       domain={[0, Math.ceil(result.maxPrestacao * 1.08)]}
                       tickFormatter={(v) => `R$ ${Number(v).toLocaleString("pt-BR")}`}
                     />
-                    <Tooltip formatter={(value: number) => formatCurrency(Number(value))} />
+                    <Tooltip formatter={(value) => formatCurrency(Number(value ?? 0))} />
                     <Legend />
                     <Line
                       type="monotone"
@@ -293,7 +296,7 @@ export default function FinanciamentoPage() {
                       domain={[0, Math.ceil(result.maxSaldo * 1.08)]}
                       tickFormatter={(v) => `R$ ${Number(v).toLocaleString("pt-BR")}`}
                     />
-                    <Tooltip formatter={(value: number) => formatCurrency(Number(value))} />
+                    <Tooltip formatter={(value) => formatCurrency(Number(value ?? 0))} />
                     <Legend />
                     <Line
                       type="monotone"

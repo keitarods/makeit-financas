@@ -4,11 +4,14 @@ import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 
 export default function ConsultoriaPage() {
-  const whatsappNumber = process.env.WHATSAPP_NUMBER || "";
-  const whatsappMessage =
-    process.env.WHATSAPP_MESSAGE 
-    
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappNumber: string = process.env.WHATSAPP_NUMBER ?? "";
+  const whatsappMessage: string =
+    process.env.WHATSAPP_MESSAGE ??
+    "Olá, Matheus. Gostaria de agendar uma conversa e entender melhor como funciona seu atendimento.";
+
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-16">

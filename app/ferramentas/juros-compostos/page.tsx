@@ -236,7 +236,7 @@ export default function JurosCompostosPage() {
                       tickFormatter={(v) => `R$ ${Number(v).toLocaleString("pt-BR")}`}
                     />
                     <Tooltip
-                      formatter={(value: number) => formatCurrency(Number(value))}
+                      formatter={(value) => formatCurrency(Number(value ?? 0))}
                       labelFormatter={(label) =>
                         `${termType === "anos" ? "Mês acumulado" : "Mês"} ${label}`
                       }
