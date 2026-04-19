@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MakeIt Finanças
 
-## Getting Started
+O **MakeIt Finanças** é um projeto web criado para reunir, em um único ecossistema, conteúdos e ferramentas práticas de educação financeira, investimentos e organização patrimonial.
 
-First, run the development server:
+A proposta do projeto é transformar conhecimento financeiro em algo mais acessível, aplicável e útil para o dia a dia das pessoas, combinando:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- ferramentas de simulação financeira;
+- conteúdos educativos;
+- e-books;
+- sugestões de livros;
+- canal de consultoria.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Objetivo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O objetivo do projeto é ajudar pessoas e famílias a tomarem decisões financeiras com mais clareza, consciência e autonomia.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A plataforma foi pensada para evoluir gradualmente, começando com uma estrutura validada de conteúdo e ferramentas, e futuramente podendo se transformar em um ecossistema mais robusto com autenticação, banco de dados, APIs e funcionalidades de SaaS.
 
-## Learn More
+## Funcionalidades atuais
 
-To learn more about Next.js, take a look at the following resources:
+Atualmente, o projeto conta com:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Ferramentas
+- Calculadora de Juros Compostos
+- Calculadora de Reserva de Emergência
+- Calculadora de Financiamento Price x SAC
+- Calculadora de Aposentadoria
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Conteúdo
+- Área de conteúdos complementares
+- Área de análises
+- Página de e-books
+- Página de livros recomendados
 
-## Deploy on Vercel
+### Consultoria
+- Página para agendamento de conversa via WhatsApp
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tecnologias utilizadas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **Recharts**
+- **Lucide React**
+
+## Estrutura do projeto
+
+O projeto está organizado para facilitar a evolução futura da plataforma, incluindo novas ferramentas, conteúdos e integrações.
+
+## Próximos passos
+
+Entre as próximas evoluções previstas estão:
+
+- refinamento da experiência do usuário;
+- organização de variáveis de ambiente e configuração de produção;
+- publicação em ambiente online;
+- integração com banco de dados;
+- autenticação e login;
+- armazenamento estruturado de análises e dados dos usuários;
+- evolução para uma proposta mais próxima de SaaS.
+
+## Autor
+
+Projeto idealizado e desenvolvido por **Matheus Keitaro**, com foco em educação financeira prática, clareza na tomada de decisão e democratização do conhecimento financeiro.
