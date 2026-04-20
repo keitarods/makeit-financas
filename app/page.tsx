@@ -2,13 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Landmark, UserCircle2, BookOpen } from "lucide-react";
+import { TrendingUp, Landmark, UserCircle2, BookOpen, Menu } from "lucide-react";
 
 export default function Page() {
-  const whatsappNumber = "5518999999999";
-  const whatsappMessage =
+  const whatsappNumber: string = process.env.WHATSAPP_NUMBER ?? "";
+  const whatsappMessage: string =
+    process.env.WHATSAPP_MESSAGE ??
     "Olá, Matheus. Gostaria de agendar uma conversa e entender melhor como funciona seu atendimento.";
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -141,6 +145,91 @@ export default function Page() {
               Consultoria
             </Link>
           </nav>
+
+          <details className="relative md:hidden">
+            <summary className="flex cursor-pointer list-none items-center rounded-xl border border-slate-200 p-2 text-slate-700">
+              <Menu className="h-5 w-5" />
+            </summary>
+
+            <div className="absolute right-0 top-full mt-3 w-72 rounded-2xl border border-slate-200 bg-white p-3 shadow-xl">
+              <div className="space-y-2">
+                <p className="px-2 pt-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                  Ferramentas
+                </p>
+
+                <Link
+                  href="/ferramentas"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Visão geral das ferramentas
+                </Link>
+                <Link
+                  href="/ferramentas/juros-compostos"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Juros compostos
+                </Link>
+                <Link
+                  href="/ferramentas/reserva-emergencia"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Reserva de emergência
+                </Link>
+                <Link
+                  href="/ferramentas/financiamento-price-sac"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Financiamento Price x SAC
+                </Link>
+                <Link
+                  href="/ferramentas/aposentadoria"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Aposentadoria
+                </Link>
+
+                <div className="my-2 border-t border-slate-200" />
+
+                <p className="px-2 pt-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                  Conteúdos
+                </p>
+
+                <Link
+                  href="/analises"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Análises
+                </Link>
+                <Link
+                  href="/conteudos"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Conteúdo complementar
+                </Link>
+                <Link
+                  href="/ebooks"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  E-books
+                </Link>
+                <Link
+                  href="/livros"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Livros
+                </Link>
+
+                <div className="my-2 border-t border-slate-200" />
+
+                <Link
+                  href="/consultoria"
+                  className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+                >
+                  Consultoria
+                </Link>
+              </div>
+            </div>
+          </details>
         </div>
       </header>
 
