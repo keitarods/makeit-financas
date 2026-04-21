@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
+import SiteHeader from "@/components/site-header";
 
 type Book = {
   title: string;
@@ -53,28 +54,20 @@ function BookCard({ book }: { book: Book }) {
         </div>
 
         <div className="space-y-2">
-          <CardTitle className="min-h-[56px] text-xl leading-7">
-            {book.title}
-          </CardTitle>
+          <CardTitle className="min-h-[56px] text-xl leading-7">{book.title}</CardTitle>
           <CardDescription className="text-sm font-semibold text-slate-500">
-          {book.author}
+            {book.author}
           </CardDescription>
         </div>
       </CardHeader>
 
       <CardContent className="flex flex-1 flex-col">
         <div className="flex flex-1 flex-col space-y-4">
-          <p className="min-h-[120px] text-sm leading-7 text-slate-600">
-            {book.description}
-          </p>
+          <p className="min-h-[120px] text-sm leading-7 text-slate-600">{book.description}</p>
 
           <div className="min-h-[150px] rounded-2xl bg-slate-50 p-4">
-            <p className="text-sm font-semibold text-slate-900">
-              Qual o motivo da recomendação?
-            </p>
-            <p className="mt-2 text-sm leading-7 text-slate-600">
-              {book.recommendation}
-            </p>
+            <p className="text-sm font-semibold text-slate-900">Qual o motivo da recomendação?</p>
+            <p className="mt-2 text-sm leading-7 text-slate-600">{book.recommendation}</p>
           </div>
         </div>
 
@@ -97,31 +90,31 @@ function BookCard({ book }: { book: Book }) {
 
 export default function LivrosPage() {
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16">
-      <div className="mb-8">
-        <Link href="/" className="text-sm font-medium text-slate-900 underline">
-          Voltar para a página inicial
-        </Link>
-      </div>
+    <div className="min-h-screen bg-white text-slate-900">
+      <SiteHeader />
 
-      <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-        Livros
-      </p>
+      <main className="mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-8">
+          <Link href="/" className="text-sm font-medium text-slate-900 underline">
+            Voltar para a página inicial
+          </Link>
+        </div>
 
-      <h1 className="mt-3 text-4xl font-bold tracking-tight">
-        Livros recomendados
-      </h1>
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">Livros</p>
 
-      <p className="mt-4 max-w-2xl text-slate-600">
-        Aqui compartilho alguns livros que considero valiosos para evolução
-        financeira, mentalidade, disciplina e construção de patrimônio.
-      </p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight">Livros recomendados</h1>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {books.map((book) => (
-          <BookCard key={book.title} book={book} />
-        ))}
-      </div>
-    </main>
+        <p className="mt-4 max-w-2xl text-slate-600">
+          Aqui compartilho alguns livros que considero valiosos para evolução financeira,
+          mentalidade, disciplina e construção de patrimônio.
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {books.map((book) => (
+            <BookCard key={book.title} book={book} />
+          ))}
+        </div>
+      </main>
+    </div>
   );
 }

@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calculator, ShieldCheck, Landmark, Wallet } from "lucide-react";
+import SiteHeader from "@/components/site-header";
 
 function ToolCard({
   href,
@@ -39,33 +39,7 @@ function ToolCard({
 export default function FerramentasPage() {
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <Image
-              src="/images/matheus-instagram.jpg"
-              alt="Foto de Matheus Keitaro"
-              width={44}
-              height={44}
-              className="h-11 w-11 rounded-full border border-slate-200 object-cover"
-            />
-            <div>
-              <p className="text-lg font-semibold tracking-tight">Matheus Keitaro</p>
-              <p className="text-sm text-slate-500">Educação financeira prática</p>
-            </div>
-          </div>
-
-          <nav className="hidden items-center gap-6 text-sm text-slate-600 md:flex">
-            <Link href="/" className="hover:text-[#526649]">
-              Home
-            </Link>
-
-            <Link href="/consultoria" className="hover:text-[#526649]">
-              Consultoria
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-8">

@@ -15,6 +15,7 @@ import {
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Wallet, Info } from "lucide-react";
+import SiteHeader from "@/components/site-header";
 
 function formatCurrency(value: number) {
   return new Intl.NumberFormat("pt-BR", {
@@ -148,235 +149,241 @@ export default function AposentadoriaPage() {
       : 0;
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16">
-      <div className="mb-8">
-        <Link href="/ferramentas" className="text-sm font-medium text-slate-900 underline">
-          Voltar para Ferramentas
-        </Link>
-      </div>
+    <div className="min-h-screen bg-white text-slate-900">
+      <SiteHeader />
 
-      <Card className="rounded-3xl border-slate-200 shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-2xl">
-            <Wallet className="h-6 w-6 text-[#526649]" />
-            Calculadora de Aposentadoria
-          </CardTitle>
-          <CardDescription>
-            Estime o aporte mensal necessário para atingir um patrimônio desejado até a idade de
-            aposentadoria.
-          </CardDescription>
-        </CardHeader>
+      <main className="mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-8">
+          <Link href="/ferramentas" className="text-sm font-medium text-slate-900 underline">
+            Voltar para Ferramentas
+          </Link>
+        </div>
 
-        <CardContent className="space-y-8">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Idade atual</label>
-              <Input
-                type="text"
-                inputMode="decimal"
-                value={currentAge}
-                onChange={(e) => setCurrentAge(e.target.value)}
-              />
-            </div>
+        <Card className="rounded-3xl border-slate-200 shadow-sm">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-2xl">
+              <Wallet className="h-6 w-6 text-[#526649]" />
+              Calculadora de Aposentadoria
+            </CardTitle>
+            <CardDescription>
+              Estime o aporte mensal necessário para atingir um patrimônio desejado até a idade de
+              aposentadoria.
+            </CardDescription>
+          </CardHeader>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">
-                Idade que deseja se aposentar
-              </label>
-              <Input
-                type="text"
-                inputMode="decimal"
-                value={retirementAge}
-                onChange={(e) => setRetirementAge(e.target.value)}
-              />
-            </div>
+          <CardContent className="space-y-8">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">Idade atual</label>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={currentAge}
+                  onChange={(e) => setCurrentAge(e.target.value)}
+                />
+              </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Patrimônio já acumulado</label>
-              <Input
-                type="text"
-                inputMode="decimal"
-                value={currentPatrimony}
-                onChange={(e) => setCurrentPatrimony(e.target.value)}
-              />
-            </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">
+                  Idade que deseja se aposentar
+                </label>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={retirementAge}
+                  onChange={(e) => setRetirementAge(e.target.value)}
+                />
+              </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">
-                Patrimônio desejado na aposentadoria
-              </label>
-              <Input
-                type="text"
-                inputMode="decimal"
-                value={targetValue}
-                onChange={(e) => setTargetValue(e.target.value)}
-              />
-            </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">
+                  Patrimônio já acumulado
+                </label>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={currentPatrimony}
+                  onChange={(e) => setCurrentPatrimony(e.target.value)}
+                />
+              </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">Tipo da taxa</label>
-              <select
-                value={rateType}
-                onChange={(e) => setRateType(e.target.value as "mensal" | "anual")}
-                className="flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm"
-              >
-                <option value="mensal">Mensal</option>
-                <option value="anual">Anual</option>
-              </select>
-            </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">
+                  Patrimônio desejado na aposentadoria
+                </label>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={targetValue}
+                  onChange={(e) => setTargetValue(e.target.value)}
+                />
+              </div>
 
-            <div className="space-y-2">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
-                {rateLabel}
-                <span
-                  className="inline-flex cursor-help items-center text-slate-500"
-                  title="Taxa real é a rentabilidade estimada acima da inflação. Ao considerar 8% ao ano como taxa real, a simulação assume crescimento do patrimônio já descontando a perda do poder de compra ao longo do tempo."
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">Tipo da taxa</label>
+                <select
+                  value={rateType}
+                  onChange={(e) => setRateType(e.target.value as "mensal" | "anual")}
+                  className="flex h-10 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm"
                 >
-                  <Info className="h-4 w-4" />
-                </span>
-              </label>
-              <Input
-                type="text"
-                inputMode="decimal"
-                value={rateValue}
-                onChange={(e) => setRateValue(e.target.value)}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-700">{periodLabel}</label>
-              <div className="flex h-10 items-center rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-600">
-                {rateType === "anual"
-                  ? `${result.totalYears.toFixed(1).replace(".", ",")} anos`
-                  : `${result.totalMonths} meses`}
+                  <option value="mensal">Mensal</option>
+                  <option value="anual">Anual</option>
+                </select>
               </div>
-            </div>
-          </div>
 
-          <div className="grid gap-4 md:grid-cols-4">
-            <Card className="rounded-2xl bg-slate-50">
-              <CardContent className="p-5">
-                <p className="text-sm text-slate-500">Aporte mensal necessário</p>
-                <p className="mt-2 text-2xl font-semibold">
-                  {formatCurrency(result.monthlyContribution)}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl bg-slate-50">
-              <CardContent className="p-5">
-                <p className="text-sm text-slate-500">Total investido</p>
-                <p className="mt-2 text-2xl font-semibold">{formatCurrency(result.invested)}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl bg-slate-50">
-              <CardContent className="p-5">
-                <p className="text-sm text-slate-500">Juros acumulados</p>
-                <p className="mt-2 text-2xl font-semibold">{formatCurrency(result.earnings)}</p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl bg-slate-50">
-              <CardContent className="p-5">
-                <p className="text-sm text-slate-500">Patrimônio projetado</p>
-                <p className="mt-2 text-2xl font-semibold">
-                  {formatCurrency(result.finalBalance)}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card className="rounded-2xl">
-            <CardHeader>
-              <CardTitle className="text-lg">
-                Evolução do patrimônio e progressão dos aportes
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-[360px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart
-                    data={result.history}
-                    margin={{ top: 20, right: 20, left: 20, bottom: 10 }}
+              <div className="space-y-2">
+                <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
+                  {rateLabel}
+                  <span
+                    className="inline-flex cursor-help items-center text-slate-500"
+                    title="Taxa real é a rentabilidade estimada acima da inflação. Ao considerar 8% ao ano como taxa real, a simulação assume crescimento do patrimônio já descontando a perda do poder de compra ao longo do tempo."
                   >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="periodo" />
-                    <YAxis
-                      width={110}
-                      domain={[0, Math.ceil(maxPatrimonio * 1.08)]}
-                      tickFormatter={(v) => `R$ ${Number(v).toLocaleString("pt-BR")}`}
-                    />
-                    <Tooltip
-                      formatter={(value) => formatCurrency(Number(value ?? 0))}
-                      labelFormatter={(label) => `Período ${label}`}
-                    />
-                    <Legend />
-                    <Line
-                      type="monotone"
-                      dataKey="patrimonio"
-                      name="Patrimônio total"
-                      dot={false}
-                      strokeWidth={2.5}
-                      stroke="#526649"
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="aportesAcumulados"
-                      name="Aportes acumulados"
-                      dot={false}
-                      strokeWidth={2.5}
-                      stroke="#7fa470"
-                    />
-                    <Line
-                      type="monotone"
-                      dataKey="patrimonioInicialProjetado"
-                      name="Patrimônio inicial projetado"
-                      dot={false}
-                      strokeWidth={2}
-                      stroke="#a3b892"
-                    />
-                  </LineChart>
-                </ResponsiveContainer>
+                    <Info className="h-4 w-4" />
+                  </span>
+                </label>
+                <Input
+                  type="text"
+                  inputMode="decimal"
+                  value={rateValue}
+                  onChange={(e) => setRateValue(e.target.value)}
+                />
               </div>
-            </CardContent>
-          </Card>
 
-          <div className="overflow-hidden rounded-2xl border border-slate-200">
-            <div className="max-h-[420px] overflow-auto">
-              <table className="min-w-full text-left text-sm">
-                <thead className="sticky top-0 bg-slate-50 text-slate-600">
-                  <tr>
-                    <th className="px-4 py-3 font-medium">Período</th>
-                    <th className="px-4 py-3 font-medium">Aportes acumulados</th>
-                    <th className="px-4 py-3 font-medium">Investido</th>
-                    <th className="px-4 py-3 font-medium">Juros</th>
-                    <th className="px-4 py-3 font-medium">Patrimônio</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {result.history.map((row) => (
-                    <tr key={row.periodo} className="border-t border-slate-100">
-                      <td className="px-4 py-3">{row.periodo}</td>
-                      <td className="px-4 py-3">{formatCurrency(row.aportesAcumulados)}</td>
-                      <td className="px-4 py-3">{formatCurrency(row.investido)}</td>
-                      <td className="px-4 py-3">{formatCurrency(row.juros)}</td>
-                      <td className="px-4 py-3">{formatCurrency(row.patrimonio)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700">{periodLabel}</label>
+                <div className="flex h-10 items-center rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-600">
+                  {rateType === "anual"
+                    ? `${result.totalYears.toFixed(1).replace(".", ",")} anos`
+                    : `${result.totalMonths} meses`}
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="rounded-2xl bg-slate-50 p-5 text-sm leading-7 text-slate-700">
-            Esta simulação estima o aporte mensal necessário para alcançar um patrimônio desejado
-            até a aposentadoria, considerando o patrimônio que você já possui e uma taxa constante
-            ao longo do tempo. O gráfico agora separa a evolução do patrimônio total, a progressão
-            dos aportes acumulados e a projeção do patrimônio inicial ao longo do período.
-          </div>
-        </CardContent>
-      </Card>
-    </main>
+            <div className="grid gap-4 md:grid-cols-4">
+              <Card className="rounded-2xl bg-slate-50">
+                <CardContent className="p-5">
+                  <p className="text-sm text-slate-500">Aporte mensal necessário</p>
+                  <p className="mt-2 text-2xl font-semibold">
+                    {formatCurrency(result.monthlyContribution)}
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-2xl bg-slate-50">
+                <CardContent className="p-5">
+                  <p className="text-sm text-slate-500">Total investido</p>
+                  <p className="mt-2 text-2xl font-semibold">{formatCurrency(result.invested)}</p>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-2xl bg-slate-50">
+                <CardContent className="p-5">
+                  <p className="text-sm text-slate-500">Juros acumulados</p>
+                  <p className="mt-2 text-2xl font-semibold">{formatCurrency(result.earnings)}</p>
+                </CardContent>
+              </Card>
+
+              <Card className="rounded-2xl bg-slate-50">
+                <CardContent className="p-5">
+                  <p className="text-sm text-slate-500">Patrimônio projetado</p>
+                  <p className="mt-2 text-2xl font-semibold">
+                    {formatCurrency(result.finalBalance)}
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+
+            <Card className="rounded-2xl">
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  Evolução do patrimônio e progressão dos aportes
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="h-[360px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                      data={result.history}
+                      margin={{ top: 20, right: 20, left: 20, bottom: 10 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="periodo" />
+                      <YAxis
+                        width={110}
+                        domain={[0, Math.ceil(maxPatrimonio * 1.08)]}
+                        tickFormatter={(v) => `R$ ${Number(v).toLocaleString("pt-BR")}`}
+                      />
+                      <Tooltip
+                        formatter={(value) => formatCurrency(Number(value ?? 0))}
+                        labelFormatter={(label) => `Período ${label}`}
+                      />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="patrimonio"
+                        name="Patrimônio total"
+                        dot={false}
+                        strokeWidth={2.5}
+                        stroke="#526649"
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="aportesAcumulados"
+                        name="Aportes acumulados"
+                        dot={false}
+                        strokeWidth={2.5}
+                        stroke="#7fa470"
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="patrimonioInicialProjetado"
+                        name="Patrimônio inicial projetado"
+                        dot={false}
+                        strokeWidth={2}
+                        stroke="#a3b892"
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="overflow-hidden rounded-2xl border border-slate-200">
+              <div className="max-h-[420px] overflow-auto">
+                <table className="min-w-full text-left text-sm">
+                  <thead className="sticky top-0 bg-slate-50 text-slate-600">
+                    <tr>
+                      <th className="px-4 py-3 font-medium">Período</th>
+                      <th className="px-4 py-3 font-medium">Aportes acumulados</th>
+                      <th className="px-4 py-3 font-medium">Investido</th>
+                      <th className="px-4 py-3 font-medium">Juros</th>
+                      <th className="px-4 py-3 font-medium">Patrimônio</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {result.history.map((row) => (
+                      <tr key={row.periodo} className="border-t border-slate-100">
+                        <td className="px-4 py-3">{row.periodo}</td>
+                        <td className="px-4 py-3">{formatCurrency(row.aportesAcumulados)}</td>
+                        <td className="px-4 py-3">{formatCurrency(row.investido)}</td>
+                        <td className="px-4 py-3">{formatCurrency(row.juros)}</td>
+                        <td className="px-4 py-3">{formatCurrency(row.patrimonio)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="rounded-2xl bg-slate-50 p-5 text-sm leading-7 text-slate-700">
+              Esta simulação estima o aporte mensal necessário para alcançar um patrimônio desejado
+              até a aposentadoria, considerando o patrimônio que você já possui e uma taxa constante
+              ao longo do tempo. O gráfico agora separa a evolução do patrimônio total, a progressão
+              dos aportes acumulados e a projeção do patrimônio inicial ao longo do período.
+            </div>
+          </CardContent>
+        </Card>
+      </main>
+    </div>
   );
 }
