@@ -3,6 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Calculator, ShieldCheck, Landmark, Wallet } from "lucide-react";
 import SiteHeader from "@/components/site-header";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ferramentas",
+};
 
 function ToolCard({
   href,

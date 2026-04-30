@@ -2,6 +2,11 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, Landmark, TrendingUp, ShieldCheck, Wallet } from "lucide-react";
 import SiteHeader from "@/components/site-header";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Conteúdos",
+};
 
 function ContentCard({
   href,
