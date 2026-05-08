@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
 export default function SiteHeader() {
   return (
@@ -22,15 +22,23 @@ export default function SiteHeader() {
 
         <nav className="hidden items-center gap-6 text-sm text-slate-600 md:flex">
           <div className="group relative">
-            <button className="flex items-center gap-1 hover:text-[#526649]">
+            <button
+              type="button"
+              aria-haspopup="menu"
+              className="flex items-center gap-1 rounded-md outline-none hover:text-[#526649] focus-visible:ring-3 focus-visible:ring-[#526649]/30"
+            >
               Ferramentas
-              <span className="text-xs">▾</span>
+              <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
 
-            <div className="invisible absolute left-0 top-full z-50 mt-3 w-80 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+            <div
+              role="menu"
+              className="invisible absolute left-0 top-full z-50 mt-3 w-80 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+            >
               <Link
                 href="/ferramentas"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Visão geral das ferramentas</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -40,7 +48,8 @@ export default function SiteHeader() {
 
               <Link
                 href="/ferramentas/juros-compostos"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Juros compostos</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -50,7 +59,8 @@ export default function SiteHeader() {
 
               <Link
                 href="/ferramentas/reserva-emergencia"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Reserva de emergência</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -60,7 +70,8 @@ export default function SiteHeader() {
 
               <Link
                 href="/ferramentas/financiamento-price-sac"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Financiamento Price x SAC</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -70,26 +81,46 @@ export default function SiteHeader() {
 
               <Link
                 href="/ferramentas/aposentadoria"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Aposentadoria</span>
                 <span className="mt-1 block text-xs text-slate-500">
                   Estime o aporte mensal necessário até a aposentadoria
                 </span>
               </Link>
+
+              <Link
+                href="/orcamento"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
+              >
+                <span className="block font-medium">Orçamento doméstico</span>
+                <span className="mt-1 block text-xs text-slate-500">
+                  Conheça a próxima ferramenta para organizar renda e gastos
+                </span>
+              </Link>
             </div>
           </div>
 
           <div className="group relative">
-            <button className="flex items-center gap-1 hover:text-[#526649]">
+            <button
+              type="button"
+              aria-haspopup="menu"
+              className="flex items-center gap-1 rounded-md outline-none hover:text-[#526649] focus-visible:ring-3 focus-visible:ring-[#526649]/30"
+            >
               Conteúdos
-              <span className="text-xs">▾</span>
+              <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
 
-            <div className="invisible absolute left-0 top-full z-50 mt-3 w-72 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+            <div
+              role="menu"
+              className="invisible absolute left-0 top-full z-50 mt-3 w-72 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+            >
               <Link
                 href="/analises"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Análises</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -99,7 +130,8 @@ export default function SiteHeader() {
 
               <Link
                 href="/conteudos"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Conteúdo complementar</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -109,7 +141,8 @@ export default function SiteHeader() {
 
               <Link
                 href="/ebooks"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">E-books</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -119,7 +152,8 @@ export default function SiteHeader() {
 
               <Link
                 href="/livros"
-                className="block rounded-xl px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-[#526649]"
+                role="menuitem"
+                className="block rounded-xl px-4 py-3 text-sm text-slate-700 outline-none hover:bg-slate-50 hover:text-[#526649] focus-visible:bg-slate-50 focus-visible:text-[#526649]"
               >
                 <span className="block font-medium">Livros</span>
                 <span className="mt-1 block text-xs text-slate-500">
@@ -135,8 +169,11 @@ export default function SiteHeader() {
         </nav>
 
         <details className="relative md:hidden">
-          <summary className="flex cursor-pointer list-none items-center rounded-xl border border-slate-200 p-2 text-slate-700">
-            <Menu className="h-5 w-5" />
+          <summary
+            aria-label="Abrir menu de navegação"
+            className="flex cursor-pointer list-none items-center rounded-xl border border-slate-200 p-2 text-slate-700 outline-none focus-visible:ring-3 focus-visible:ring-[#526649]/30"
+          >
+            <Menu className="h-5 w-5" aria-hidden="true" />
           </summary>
 
           <div className="absolute right-0 top-full mt-3 w-72 rounded-2xl border border-slate-200 bg-white p-3 shadow-xl">
@@ -174,6 +211,12 @@ export default function SiteHeader() {
                 className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
               >
                 Aposentadoria
+              </Link>
+              <Link
+                href="/orcamento"
+                className="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
+              >
+                Orçamento doméstico
               </Link>
 
               <div className="my-2 border-t border-slate-200" />

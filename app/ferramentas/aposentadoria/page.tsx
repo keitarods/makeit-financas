@@ -16,44 +16,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Wallet, Info } from "lucide-react";
 import SiteHeader from "@/components/site-header";
-
-function formatCurrency(value: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    maximumFractionDigits: 2,
-  }).format(value || 0);
-}
-
-function parseLocaleNumber(value: string) {
-  if (!value) return 0;
-
-  const cleaned = value.trim().replace(/\s/g, "").replace(/[^\d,.-]/g, "");
-  const hasComma = cleaned.includes(",");
-  const hasDot = cleaned.includes(".");
-
-  if (hasComma && hasDot) {
-    const lastComma = cleaned.lastIndexOf(",");
-    const lastDot = cleaned.lastIndexOf(".");
-
-    if (lastComma > lastDot) {
-      return Number(cleaned.replace(/\./g, "").replace(",", ".")) || 0;
-    }
-
-    return Number(cleaned.replace(/,/g, "")) || 0;
-  }
-
-  if (hasComma) {
-    return Number(cleaned.replace(",", ".")) || 0;
-  }
-
-  return Number(cleaned) || 0;
-}
-
-function periodicRateFromInput(rateValue: number, rateType: "mensal" | "anual") {
-  if (rateType === "mensal") return rateValue / 100;
-  return Math.pow(1 + rateValue / 100, 1 / 12) - 1;
-}
+import ClientOnlyChart from "@/components/client-only-chart";
+import {
+  calculateRequiredRetirementContribution,
+  formatCurrency,
+  parseLocaleNumber,
+  periodicRateFromInput,
+} from "@/lib/finance";
 
 export default function AposentadoriaPage() {
   const [currentAge, setCurrentAge] = useState("30");
@@ -76,22 +45,12 @@ export default function AposentadoriaPage() {
 
     const totalMonths = Math.max(0, Math.round((ageRetire - ageNow) * 12));
 
-    let monthlyContribution = 0;
-
-    if (totalMonths > 0 && target > 0) {
-      const futureValueOfCurrentPatrimony =
-        initialPatrimony * Math.pow(1 + monthlyRate, totalMonths);
-      const remainingGoal = Math.max(0, target - futureValueOfCurrentPatrimony);
-
-      if (remainingGoal === 0) {
-        monthlyContribution = 0;
-      } else if (monthlyRate === 0) {
-        monthlyContribution = remainingGoal / totalMonths;
-      } else {
-        monthlyContribution =
-          remainingGoal / ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate);
-      }
-    }
+    const monthlyContribution = calculateRequiredRetirementContribution({
+      currentPatrimony: initialPatrimony,
+      target,
+      monthlyRate,
+      totalMonths,
+    });
 
     let balance = initialPatrimony;
     let invested = initialPatrimony;
@@ -300,7 +259,7 @@ export default function AposentadoriaPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-[360px] w-full">
+                <ClientOnlyChart className="h-[360px] w-full min-w-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                       data={result.history}
@@ -344,7 +303,7 @@ export default function AposentadoriaPage() {
                       />
                     </LineChart>
                   </ResponsiveContainer>
-                </div>
+                </ClientOnlyChart>
               </CardContent>
             </Card>
 

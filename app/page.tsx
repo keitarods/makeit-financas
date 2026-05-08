@@ -2,18 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Landmark, UserCircle2, BookOpen } from "lucide-react";
+import { Landmark, UserCircle2, BookOpen, LayoutDashboard } from "lucide-react";
 import SiteHeader from "@/components/site-header";
+import { getWhatsAppLink } from "@/lib/contact";
 
 export default function Page() {
-  const whatsappNumber: string = process.env.WHATSAPP_NUMBER ?? "";
-  const whatsappMessage: string =
-    process.env.WHATSAPP_MESSAGE ??
-    "Olá, Matheus. Gostaria de agendar uma conversa e entender melhor como funciona seu atendimento.";
-
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    whatsappMessage
-  )}`;
+  const whatsappLink = getWhatsAppLink();
 
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -48,12 +42,18 @@ export default function Page() {
 
               <CardContent className="grid gap-4 sm:grid-cols-2">
                 <div className="rounded-2xl bg-slate-50 p-5">
-                  <TrendingUp className="h-5 w-5 text-[#526649]" />
-                  <p className="mt-3 font-semibold">Ferramentas práticas</p>
+                  <LayoutDashboard className="h-5 w-5 text-[#526649]" />
+                  <p className="mt-3 font-semibold">Nova ferramenta: Orçamento Doméstico</p>
                   <p className="mt-2 text-sm leading-6 text-slate-600">
-                    Simuladores para progressão de patrimônio, comparador de renda fixa,
-                    aposentadoria, financiamentos e muito mais.
+                    Organize rendas, despesas, categorias e acompanhe sua rotina financeira em um
+                    dashboard visual.
                   </p>
+                  <Link
+                    href="/orcamento"
+                    className="mt-3 inline-block text-sm font-semibold text-[#526649] hover:underline"
+                  >
+                    Conhecer ferramenta
+                  </Link>
                 </div>
 
                 <div className="rounded-2xl bg-slate-50 p-5">
@@ -144,29 +144,41 @@ export default function Page() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/ferramentas">
-                <Button className="rounded-2xl bg-[#526649] px-6 hover:bg-[#44553c]">
+              <Button asChild className="rounded-2xl bg-[#526649] px-6 hover:bg-[#44553c]">
+                <Link href="/ferramentas">
                   Ir para Ferramentas
-                </Button>
-              </Link>
+                </Link>
+              </Button>
 
-              <Link href="/conteudos">
-                <Button
-                  variant="outline"
-                  className="rounded-2xl border-[#526649] px-6 text-[#526649] hover:bg-[#526649] hover:text-white"
-                >
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-2xl border-[#526649] px-6 text-[#526649] hover:bg-[#526649] hover:text-white"
+              >
+                <Link href="/orcamento">
+                  Orçamento Doméstico
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-2xl border-[#526649] px-6 text-[#526649] hover:bg-[#526649] hover:text-white"
+              >
+                <Link href="/conteudos">
                   Ir para Conteúdos
-                </Button>
-              </Link>
+                </Link>
+              </Button>
 
-              <Link href="/consultoria">
-                <Button
-                  variant="outline"
-                  className="rounded-2xl border-[#526649] px-6 text-[#526649] hover:bg-[#526649] hover:text-white"
-                >
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-2xl border-[#526649] px-6 text-[#526649] hover:bg-[#526649] hover:text-white"
+              >
+                <Link href="/consultoria">
                   Ir para Consultoria
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </section>
@@ -184,13 +196,15 @@ export default function Page() {
               diretamente pelo WhatsApp.
             </p>
 
-            <div className="mt-8">
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <Button className="rounded-2xl bg-[#526649] px-6 hover:bg-[#44553c]">
-                  Agendar conversa
+            {whatsappLink ? (
+              <div className="mt-8">
+                <Button asChild className="rounded-2xl bg-[#526649] px-6 hover:bg-[#44553c]">
+                  <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                    Agendar conversa
+                  </a>
                 </Button>
-              </a>
-            </div>
+              </div>
+            ) : null}
           </div>
         </section>
       </main>

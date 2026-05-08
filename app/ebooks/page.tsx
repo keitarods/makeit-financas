@@ -2,6 +2,14 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookMarked } from "lucide-react";
+import SiteHeader from "@/components/site-header";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "E-books",
+  description:
+    "Materiais práticos sobre educação financeira, organização, investimentos e construção de patrimônio.",
+};
 
 type Ebook = {
   title: string;
@@ -61,25 +69,21 @@ function EbookCard({ ebook }: { ebook: Ebook }) {
         <p className="flex-1 text-sm leading-7 text-slate-600">{ebook.description}</p>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <a
-            href={ebook.file}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block flex-1"
-          >
-            <Button className="w-full rounded-2xl bg-[#526649] hover:bg-[#44553c]">
+          <Button asChild className="w-full flex-1 rounded-2xl bg-[#526649] hover:bg-[#44553c]">
+            <a href={ebook.file} target="_blank" rel="noopener noreferrer">
               Ler e-book
-            </Button>
-          </a>
+            </a>
+          </Button>
 
-          <a href={ebook.file} download className="block flex-1">
-            <Button
-              variant="outline"
-              className="w-full rounded-2xl border-[#526649] text-[#526649] hover:bg-[#526649] hover:text-white"
-            >
+          <Button
+            asChild
+            variant="outline"
+            className="w-full flex-1 rounded-2xl border-[#526649] text-[#526649] hover:bg-[#526649] hover:text-white"
+          >
+            <a href={ebook.file} download>
               Baixar PDF
-            </Button>
-          </a>
+            </a>
+          </Button>
         </div>
       </CardContent>
     </Card>
@@ -88,29 +92,31 @@ function EbookCard({ ebook }: { ebook: Ebook }) {
 
 export default function EbooksPage() {
   return (
-    <main className="mx-auto max-w-7xl px-6 py-16">
-      <div className="mb-8">
-        <Link href="/" className="text-sm font-medium text-slate-900 underline">
-          Voltar para a página inicial
-        </Link>
-      </div>
+    <div className="min-h-screen bg-white text-slate-900">
+      <SiteHeader />
 
-      <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-        E-books
-      </p>
+      <main className="mx-auto max-w-7xl px-6 py-16">
+        <div className="mb-8">
+          <Link href="/" className="text-sm font-medium text-slate-900 underline">
+            Voltar para a página inicial
+          </Link>
+        </div>
 
-      <h1 className="mt-3 text-4xl font-bold tracking-tight">E-books disponíveis</h1>
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">E-books</p>
 
-      <p className="mt-4 max-w-2xl text-slate-600">
-        Aqui você encontra materiais práticos sobre educação financeira, organização,
-        investimentos e construção de patrimônio.
-      </p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight">E-books disponíveis</h1>
 
-      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-2">
-        {ebooks.map((ebook) => (
-          <EbookCard key={ebook.title} ebook={ebook} />
-        ))}
-      </div>
-    </main>
+        <p className="mt-4 max-w-2xl text-slate-600">
+          Aqui você encontra materiais práticos sobre educação financeira, organização,
+          investimentos e construção de patrimônio.
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-2">
+          {ebooks.map((ebook) => (
+            <EbookCard key={ebook.title} ebook={ebook} />
+          ))}
+        </div>
+      </main>
+    </div>
   );
 }

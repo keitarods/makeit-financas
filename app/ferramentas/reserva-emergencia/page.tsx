@@ -6,39 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { ShieldCheck } from "lucide-react";
 import SiteHeader from "@/components/site-header";
-
-function formatCurrency(value: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    maximumFractionDigits: 2,
-  }).format(value || 0);
-}
-
-function parseLocaleNumber(value: string) {
-  if (!value) return 0;
-
-  const cleaned = value.trim().replace(/\s/g, "").replace(/[^\d,.-]/g, "");
-  const hasComma = cleaned.includes(",");
-  const hasDot = cleaned.includes(".");
-
-  if (hasComma && hasDot) {
-    const lastComma = cleaned.lastIndexOf(",");
-    const lastDot = cleaned.lastIndexOf(".");
-
-    if (lastComma > lastDot) {
-      return Number(cleaned.replace(/\./g, "").replace(",", ".")) || 0;
-    }
-
-    return Number(cleaned.replace(/,/g, "")) || 0;
-  }
-
-  if (hasComma) {
-    return Number(cleaned.replace(",", ".")) || 0;
-  }
-
-  return Number(cleaned) || 0;
-}
+import { calculateEmergencyReserve, formatCurrency, parseLocaleNumber } from "@/lib/finance";
 
 const monthsByProfile = {
   CLT: 6,
@@ -56,7 +24,7 @@ export default function ReservaEmergenciaPage() {
 
     return {
       months,
-      reserveValue: expense * months,
+      reserveValue: calculateEmergencyReserve(expense, months),
     };
   }, [profile, fixedExpense]);
 

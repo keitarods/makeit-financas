@@ -16,44 +16,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Calculator } from "lucide-react";
 import SiteHeader from "@/components/site-header";
-
-function formatCurrency(value: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    maximumFractionDigits: 2,
-  }).format(value || 0);
-}
-
-function parseLocaleNumber(value: string) {
-  if (!value) return 0;
-
-  const cleaned = value.trim().replace(/\s/g, "").replace(/[^\d,.-]/g, "");
-  const hasComma = cleaned.includes(",");
-  const hasDot = cleaned.includes(".");
-
-  if (hasComma && hasDot) {
-    const lastComma = cleaned.lastIndexOf(",");
-    const lastDot = cleaned.lastIndexOf(".");
-
-    if (lastComma > lastDot) {
-      return Number(cleaned.replace(/\./g, "").replace(",", ".")) || 0;
-    }
-
-    return Number(cleaned.replace(/,/g, "")) || 0;
-  }
-
-  if (hasComma) {
-    return Number(cleaned.replace(",", ".")) || 0;
-  }
-
-  return Number(cleaned) || 0;
-}
-
-function monthlyRateFromInput(rateValue: number, rateType: "mensal" | "anual") {
-  if (rateType === "mensal") return rateValue / 100;
-  return Math.pow(1 + rateValue / 100, 1 / 12) - 1;
-}
+import ClientOnlyChart from "@/components/client-only-chart";
+import {
+  calculateCompoundInterest,
+  formatCurrency,
+  parseLocaleNumber,
+  periodicRateFromInput,
+} from "@/lib/finance";
 
 export default function JurosCompostosPage() {
   const [initialAmount, setInitialAmount] = useState("1000");
@@ -76,36 +45,18 @@ export default function JurosCompostosPage() {
         ? Math.max(0, Math.round(parseLocaleNumber(termValue) * 12))
         : Math.max(0, Math.round(parseLocaleNumber(termValue)));
 
-    const monthlyRate = monthlyRateFromInput(rate, rateType);
+    const monthlyRate = periodicRateFromInput(rate, rateType);
 
-    let balance = principal;
-    let invested = principal;
-
-    const history: {
-      periodo: number;
-      patrimonio: number;
-      investido: number;
-      juros: number;
-    }[] = [];
-
-    for (let month = 1; month <= totalMonths; month += 1) {
-      balance = balance * (1 + monthlyRate) + contribution;
-      invested += contribution;
-
-      history.push({
-        periodo: month,
-        patrimonio: balance,
-        investido: invested,
-        juros: balance - invested,
-      });
-    }
+    const compoundResult = calculateCompoundInterest({
+      principal,
+      contribution,
+      monthlyRate,
+      totalMonths,
+    });
 
     return {
       totalMonths,
-      invested,
-      balance,
-      earnings: balance - invested,
-      history,
+      ...compoundResult,
     };
   }, [initialAmount, monthlyContribution, rateValue, rateType, termValue]);
 
@@ -227,7 +178,7 @@ export default function JurosCompostosPage() {
                 <CardTitle className="text-lg">Evolução do patrimônio ao longo do tempo</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-[340px] w-full">
+                <ClientOnlyChart className="h-[340px] w-full min-w-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                       data={result.history}
@@ -265,7 +216,7 @@ export default function JurosCompostosPage() {
                       />
                     </LineChart>
                   </ResponsiveContainer>
-                </div>
+                </ClientOnlyChart>
               </CardContent>
             </Card>
 

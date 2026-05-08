@@ -16,44 +16,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Landmark } from "lucide-react";
 import SiteHeader from "@/components/site-header";
-
-function formatCurrency(value: number) {
-  return new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-    maximumFractionDigits: 2,
-  }).format(value || 0);
-}
-
-function parseLocaleNumber(value: string) {
-  if (!value) return 0;
-
-  const cleaned = value.trim().replace(/\s/g, "").replace(/[^\d,.-]/g, "");
-  const hasComma = cleaned.includes(",");
-  const hasDot = cleaned.includes(".");
-
-  if (hasComma && hasDot) {
-    const lastComma = cleaned.lastIndexOf(",");
-    const lastDot = cleaned.lastIndexOf(".");
-
-    if (lastComma > lastDot) {
-      return Number(cleaned.replace(/\./g, "").replace(",", ".")) || 0;
-    }
-
-    return Number(cleaned.replace(/,/g, "")) || 0;
-  }
-
-  if (hasComma) {
-    return Number(cleaned.replace(",", ".")) || 0;
-  }
-
-  return Number(cleaned) || 0;
-}
-
-function monthlyRateFromCET(rateValue: number, rateType: "mensal" | "anual") {
-  if (rateType === "mensal") return rateValue / 100;
-  return Math.pow(1 + rateValue / 100, 1 / 12) - 1;
-}
+import ClientOnlyChart from "@/components/client-only-chart";
+import {
+  calculateFinancing,
+  formatCurrency,
+  parseLocaleNumber,
+  periodicRateFromInput,
+} from "@/lib/finance";
 
 export default function FinanciamentoPage() {
   const [loanAmount, setLoanAmount] = useState("200000");
@@ -64,50 +33,14 @@ export default function FinanciamentoPage() {
   const result = useMemo(() => {
     const pv = parseLocaleNumber(loanAmount);
     const n = Math.max(1, Math.round(parseLocaleNumber(installments) || 1));
-    const rate = monthlyRateFromCET(parseLocaleNumber(cetValue), cetType);
+    const rate = periodicRateFromInput(parseLocaleNumber(cetValue), cetType);
+    const financingResult = calculateFinancing({
+      loanAmount: pv,
+      installments: n,
+      monthlyRate: rate,
+    });
 
-    const priceRows: {
-      parcela: number;
-      prestacao: number;
-      amortizacao: number;
-      juros: number;
-      saldoDevedor: number;
-    }[] = [];
-
-    const sacRows: typeof priceRows = [];
-
-    const pricePayment =
-      rate === 0 ? pv / n : (pv * rate * Math.pow(1 + rate, n)) / (Math.pow(1 + rate, n) - 1);
-
-    let priceBalance = pv;
-    let sacBalance = pv;
-    const sacAmort = pv / n;
-
-    for (let i = 1; i <= n; i += 1) {
-      const priceInterest = priceBalance * rate;
-      const priceAmort = pricePayment - priceInterest;
-      priceBalance = Math.max(0, priceBalance - priceAmort);
-
-      priceRows.push({
-        parcela: i,
-        prestacao: pricePayment,
-        amortizacao: priceAmort,
-        juros: priceInterest,
-        saldoDevedor: priceBalance,
-      });
-
-      const sacInterest = sacBalance * rate;
-      const sacPayment = sacAmort + sacInterest;
-      sacBalance = Math.max(0, sacBalance - sacAmort);
-
-      sacRows.push({
-        parcela: i,
-        prestacao: sacPayment,
-        amortizacao: sacAmort,
-        juros: sacInterest,
-        saldoDevedor: sacBalance,
-      });
-    }
+    const { priceRows, sacRows } = financingResult;
 
     const chartData = priceRows.map((row, index) => ({
       parcela: row.parcela,
@@ -116,12 +49,6 @@ export default function FinanciamentoPage() {
       priceSaldo: row.saldoDevedor,
       sacSaldo: sacRows[index].saldoDevedor,
     }));
-
-    const totalPrice = priceRows.reduce((acc, row) => acc + row.prestacao, 0);
-    const totalSac = sacRows.reduce((acc, row) => acc + row.prestacao, 0);
-
-    const totalPriceInterest = priceRows.reduce((acc, row) => acc + row.juros, 0);
-    const totalSacInterest = sacRows.reduce((acc, row) => acc + row.juros, 0);
 
     const maxPrestacao = Math.max(
       ...chartData.map((item) => Math.max(item.pricePrestacao, item.sacPrestacao)),
@@ -137,10 +64,10 @@ export default function FinanciamentoPage() {
       priceRows,
       sacRows,
       chartData,
-      totalPrice,
-      totalSac,
-      totalPriceInterest,
-      totalSacInterest,
+      totalPrice: financingResult.totalPrice,
+      totalSac: financingResult.totalSac,
+      totalPriceInterest: financingResult.totalPriceInterest,
+      totalSacInterest: financingResult.totalSacInterest,
       maxPrestacao,
       maxSaldo,
     };
@@ -245,7 +172,7 @@ export default function FinanciamentoPage() {
                 <CardTitle className="text-lg">Comparação das parcelas</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-[320px] w-full">
+                <ClientOnlyChart className="h-[320px] w-full min-w-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                       data={result.chartData}
@@ -278,7 +205,7 @@ export default function FinanciamentoPage() {
                       />
                     </LineChart>
                   </ResponsiveContainer>
-                </div>
+                </ClientOnlyChart>
               </CardContent>
             </Card>
 
@@ -287,7 +214,7 @@ export default function FinanciamentoPage() {
                 <CardTitle className="text-lg">Comparação do saldo devedor</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="h-[320px] w-full">
+                <ClientOnlyChart className="h-[320px] w-full min-w-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                       data={result.chartData}
@@ -320,7 +247,7 @@ export default function FinanciamentoPage() {
                       />
                     </LineChart>
                   </ResponsiveContainer>
-                </div>
+                </ClientOnlyChart>
               </CardContent>
             </Card>
 

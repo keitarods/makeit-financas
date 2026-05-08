@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calculator, ShieldCheck, Landmark, Wallet } from "lucide-react";
+import { Calculator, ShieldCheck, Landmark, Wallet, LayoutDashboard } from "lucide-react";
 import SiteHeader from "@/components/site-header";
 import type { Metadata } from "next";
 
@@ -63,7 +63,13 @@ export default function FerramentasPage() {
           Aqui você encontra simuladores práticos para apoiar decisões financeiras do dia a dia.
         </p>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          <ToolCard
+            href="/orcamento"
+            title="Orçamento doméstico"
+            description="Conheça a ferramenta para organizar rendas, despesas, categorias, importação por Excel e dashboards da rotina financeira da família."
+            icon={LayoutDashboard}
+          />
           <ToolCard
             href="/ferramentas/juros-compostos"
             title="Juros compostos"

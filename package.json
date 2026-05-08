@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev --webpack",
     "build": "next build --webpack",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/tests/**/*.test.js"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

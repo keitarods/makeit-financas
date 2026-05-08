@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowJs": false,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": ".test-build",
+    "noEmit": false,
+    "incremental": false,
+    "tsBuildInfoFile": ".test-build/tsconfig.test.tsbuildinfo",
+    "types": ["node"]
+  },
+  "include": ["lib/finance.ts", "tests/**/*.ts"]
+}
