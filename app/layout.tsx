@@ -10,6 +10,18 @@ export const metadata: Metadata = {
   },
   description:
     "Educação financeira prática com ferramentas, conteúdos e recursos para investir melhor e construir patrimônio com mais clareza.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      {
+        url: "/images/matheus-simbol.png",
+        type: "image/png",
+        sizes: "132x145",
+      },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/images/matheus-simbol.png",
+  },
 };
 
 export default function RootLayout({
