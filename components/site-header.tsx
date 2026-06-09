@@ -5,20 +5,17 @@ import { ChevronDown, Menu } from "lucide-react";
 export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
+        <Link href="/">
           <Image
-            src="/images/matheus-instagram.jpg"
-            alt="Foto de Matheus Keitaro"
-            width={44}
-            height={44}
-            className="h-11 w-11 rounded-full border border-slate-200 object-cover"
+            src="/images/matheus-logo.png"
+            alt="Matheus Keitaro - Educação financeira prática"
+            width={2182}
+            height={721}
+            className="h-20 w-auto"
+            priority
           />
-          <div>
-            <p className="text-lg font-semibold tracking-tight">Matheus Keitaro</p>
-            <p className="text-sm text-slate-500">Educação financeira prática</p>
-          </div>
-        </div>
+        </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-slate-600 md:flex">
           <div className="group relative">
