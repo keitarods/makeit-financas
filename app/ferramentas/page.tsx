@@ -43,7 +43,7 @@ function ToolCard({
 
 export default function FerramentasPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-[#f7f6f3] text-slate-900">
       <SiteHeader />
 
       <main className="mx-auto max-w-7xl px-6 py-16">

@@ -4,7 +4,7 @@ import { ChevronDown, Menu } from "lucide-react";
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-30 border-b border-white/10 bg-[#3c5634]/75 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2">
         <Link href="/">
           <Image
@@ -17,12 +17,12 @@ export default function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm text-slate-600 md:flex">
+        <nav className="hidden items-center gap-6 text-sm text-slate-300 md:flex">
           <div className="group relative">
             <button
               type="button"
               aria-haspopup="menu"
-              className="flex items-center gap-1 rounded-md outline-none hover:text-[#526649] focus-visible:ring-3 focus-visible:ring-[#526649]/30"
+              className="flex items-center gap-1 rounded-md outline-none hover:text-white focus-visible:ring-3 focus-visible:ring-white/30"
             >
               Ferramentas
               <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
@@ -104,7 +104,7 @@ export default function SiteHeader() {
             <button
               type="button"
               aria-haspopup="menu"
-              className="flex items-center gap-1 rounded-md outline-none hover:text-[#526649] focus-visible:ring-3 focus-visible:ring-[#526649]/30"
+              className="flex items-center gap-1 rounded-md outline-none hover:text-white focus-visible:ring-3 focus-visible:ring-white/30"
             >
               Conteúdos
               <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
@@ -160,7 +160,7 @@ export default function SiteHeader() {
             </div>
           </div>
 
-          <Link href="/consultoria" className="hover:text-[#526649]">
+          <Link href="/consultoria" className="hover:text-white transition-colors">
             Consultoria
           </Link>
         </nav>
@@ -168,7 +168,7 @@ export default function SiteHeader() {
         <details className="relative md:hidden">
           <summary
             aria-label="Abrir menu de navegação"
-            className="flex cursor-pointer list-none items-center rounded-xl border border-slate-200 p-2 text-slate-700 outline-none focus-visible:ring-3 focus-visible:ring-[#526649]/30"
+            className="flex cursor-pointer list-none items-center rounded-xl border border-white/20 p-2 text-slate-200 outline-none focus-visible:ring-3 focus-visible:ring-white/30"
           >
             <Menu className="h-5 w-5" aria-hidden="true" />
           </summary>

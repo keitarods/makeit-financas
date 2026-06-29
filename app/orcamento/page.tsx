@@ -153,7 +153,7 @@ function StartCta({ variant = "primary" }: { variant?: "primary" | "secondary" }
 
 export default function OrcamentoPage() {
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="min-h-screen bg-[#f7f6f3] text-slate-900">
       <SiteHeader />
 
       <main>
