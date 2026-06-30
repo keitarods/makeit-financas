@@ -38,26 +38,26 @@ export default function Page() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-70" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
                   </span>
-                  Ferramentas + conteúdo + consultoria
+                  Educação financeira que gera resultado
                 </span>
 
                 <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:mx-0 lg:max-w-2xl">
-                  Organize sua vida financeira e invista melhor com{" "}
-                  <span className="text-green-400">clareza.</span>
+                  Tome o controle do seu dinheiro e construa patrimônio com{" "}
+                  <span className="text-green-400">estratégia.</span>
                 </h1>
 
                 <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg lg:mx-0 lg:max-w-xl">
-                  Aqui você encontra um mini ecossistema que te auxilia a sair do conteúdo raso e
-                  partir para decisões financeiras mais práticas, seguras e inteligentes.
+                  Ferramentas práticas, conteúdo aprofundado e consultoria especializada — tudo o
+                  que você precisa para sair das dúvidas e tomar decisões financeiras com confiança.
                 </p>
               </div>
 
               <Card className="rounded-[2rem] border-white/10 bg-white shadow-2xl">
                 <CardHeader>
-                  <CardTitle className="text-2xl">Seu ecossistema financeiro</CardTitle>
+                  <CardTitle className="text-2xl">O que você encontra aqui</CardTitle>
                   <CardDescription>
-                    Valide a primeira versão com ferramentas úteis, conteúdos estratégicos e um
-                    canal de consultoria.
+                    Ferramentas gratuitas, conteúdos aprofundados e consultoria personalizada para
+                    quem quer resultados reais com o próprio dinheiro.
                   </CardDescription>
                 </CardHeader>
 
@@ -70,10 +70,10 @@ export default function Page() {
                     <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#526649]/10">
                       <LayoutDashboard className="h-5 w-5 text-[#526649]" />
                     </div>
-                    <p className="mt-3 font-semibold">Nova ferramenta: Orçamento Doméstico</p>
+                    <p className="mt-3 font-semibold">Orçamento Doméstico</p>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      Organize rendas, despesas, categorias e acompanhe sua rotina financeira em um
-                      dashboard visual.
+                      Visualize para onde vai cada real, controle categorias e identifique onde você
+                      pode economizar mais todo mês.
                     </p>
                     <Link
                       href="/orcamento"
@@ -87,10 +87,10 @@ export default function Page() {
                     <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#526649]/10">
                       <BookOpen className="h-5 w-5 text-[#526649]" />
                     </div>
-                    <p className="mt-3 font-semibold">Conteúdos complementares</p>
+                    <p className="mt-3 font-semibold">Conteúdo aprofundado</p>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      Aqui compartilho materiais para quem quer se aprofundar mais dentro do contexto
-                      do mercado financeiro e economia.
+                      Análises, artigos e guias sobre investimentos, renda fixa, previdência e
+                      planejamento patrimonial — sem enrolação.
                     </p>
                   </div>
 
@@ -98,10 +98,10 @@ export default function Page() {
                     <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#526649]/10">
                       <UserCircle2 className="h-5 w-5 text-[#526649]" />
                     </div>
-                    <p className="mt-3 font-semibold">O que você vai aprender?</p>
+                    <p className="mt-3 font-semibold">Educação financeira de verdade</p>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      Aprender a se educar financeiramente, um dos pilares mais importantes dentro
-                      de uma família, mas muito pouco levado a sério.
+                      Entenda como o dinheiro funciona, construa hábitos sólidos e pare de tomar
+                      decisões no escuro — na prática, não na teoria.
                     </p>
                   </div>
 
@@ -109,9 +109,10 @@ export default function Page() {
                     <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#526649]/10">
                       <Landmark className="h-5 w-5 text-[#526649]" />
                     </div>
-                    <p className="mt-3 font-semibold">Como eu posso te ajudar?</p>
+                    <p className="mt-3 font-semibold">Consultoria personalizada</p>
                     <p className="mt-2 text-sm leading-6 text-slate-600">
-                      Consultoria, ferramentas práticas e conteúdo objetivo.
+                      Análise da sua situação real, com um plano claro de onde investir, quanto
+                      guardar e quais erros evitar.
                     </p>
                   </div>
                 </CardContent>
@@ -126,9 +127,9 @@ export default function Page() {
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {[
                 { value: "5+", label: "Ferramentas gratuitas" },
-                { value: "CEA", label: "Certificado ANBIMA" },
+                { value: "CEA", label: "Especialista em Investimentos ANBIMA" },
                 { value: "MBA", label: "Ciência de Dados" },
-                { value: "100%", label: "Conteúdo prático" },
+                { value: "0", label: "Custo para começar" },
               ].map((item) => (
                 <div key={item.label} className="text-center">
                   <p className="text-2xl font-bold text-[#526649]">{item.value}</p>
@@ -145,27 +146,26 @@ export default function Page() {
             <div>
               <p className="text-sm uppercase tracking-[0.2em] text-slate-200">Quem sou eu</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                Uma jornada real de aprendizado financeiro
+                De zero em finanças a especialista certificado
               </h2>
 
               <div className="mt-6 space-y-5 text-base leading-8 text-slate-100">
                 <p>
-                  Sou o Matheus Keitaro, pai da Maria e do José e marido da Mary Anne. Assim como a
-                  grande maioria da nossa população, não tive conhecimento sobre educação financeira
-                  e investimentos durante boa parte da minha vida.
+                  Sou o Matheus Keitaro, engenheiro, pai de dois filhos e apaixonado por finanças.
+                  Como a maioria das pessoas, cresci sem nenhuma educação financeira — e paguei o
+                  preço por isso.
                 </p>
 
                 <p>
-                  Esse jogo mudou só depois de adulto, quando decidi que não bastava ficar apenas
-                  dependendo do meu trabalho. Estudar sobre o mercado e ver que sim, podemos
-                  alcançar nossa liberdade financeira, me trouxe uma verdadeira virada de chave.
+                  A virada veio quando decidi estudar o mercado a fundo e entender como o dinheiro
+                  realmente funciona. Percebi que liberdade financeira não é privilégio de poucos —
+                  é resultado de conhecimento aplicado.
                 </p>
 
                 <p>
-                  Por fim, sou um engenheiro na luta, com MBA em Ciência de Dados e certificado
-                  pela ANBIMA como Especialista em Investimentos CEA. Mas isso são apenas títulos e
-                  não querem dizer nada sozinhos. A ideia é democratizar o conhecimento para que
-                  todos possam alcançar seus objetivos.
+                  Hoje sou MBA em Ciência de Dados e certificado pela ANBIMA como Especialista em
+                  Investimentos CEA. Mas o que me move não são os títulos — é ajudar pessoas
+                  comuns a tomarem decisões financeiras mais inteligentes, com clareza e sem jargão.
                 </p>
               </div>
             </div>
@@ -205,11 +205,11 @@ export default function Page() {
                 Explore a plataforma
               </p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                Escolha por onde você quer começar
+                Escolha por onde começar — tudo é gratuito
               </h2>
               <p className="mt-4 max-w-2xl leading-7 text-slate-600">
-                Navegue pelas ferramentas financeiras, aprofunde-se nos conteúdos e conheça melhor
-                a consultoria.
+                Ferramentas prontas para usar, conteúdo para aprofundar e consultoria para quem
+                quer avançar mais rápido com acompanhamento personalizado.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -255,11 +255,11 @@ export default function Page() {
               <div>
                 <p className="text-sm uppercase tracking-[0.2em] text-green-200">Consultoria</p>
                 <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                  Agende uma conversa
+                  Pronto para ter um plano financeiro de verdade?
                 </h2>
                 <p className="mt-4 max-w-2xl leading-7 text-slate-200">
-                  Caso queira entender melhor como posso te ajudar, você pode entrar em contato
-                  diretamente pelo WhatsApp.
+                  Na consultoria analisamos sua situação real e saímos com um caminho claro: onde
+                  investir, quanto guardar e como chegar nos seus objetivos mais rápido.
                 </p>
               </div>
 
