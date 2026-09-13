@@ -1,7 +1,10 @@
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Landmark } from "lucide-react";
 import SiteHeader from "@/components/site-header";
+
+export const metadata = pageMetadata("SAC ou Price: entenda os sistemas de financiamento", "Entenda as diferenças entre SAC e Price, amortização, juros e parcelas. Compare os sistemas na calculadora de financiamento.", "/conteudos/sac-x-price");
 
 export default function SacPriceConteudoPage() {
   return (
@@ -26,7 +29,7 @@ export default function SacPriceConteudoPage() {
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#526649] text-white">
               <Landmark className="h-5 w-5" />
             </div>
-            <CardTitle className="text-3xl">SAC x Price</CardTitle>
+            <h1 className="text-3xl font-medium tracking-tight">SAC x Price</h1>
           </CardHeader>
 
           <CardContent className="space-y-6 text-slate-700 leading-8">

@@ -1,101 +1,21 @@
 import Link from "next/link";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Calculator, ShieldCheck, Landmark, Wallet, LayoutDashboard } from "lucide-react";
-import SiteHeader from "@/components/site-header";
-import type { Metadata } from "next";
+import { ArrowRight, ArrowUpRight, ChartNoAxesCombined, House, ShieldCheck, Sprout, Wallet } from "lucide-react";
+import MarketingHeader from "@/components/marketing-header";
+import { calculators, type CalculatorSlug } from "@/lib/calculators";
+import { pageMetadata } from "@/lib/site";
+import styles from "@/app/home.module.css";
 
-export const metadata: Metadata = {
-  title: "Ferramentas",
-};
-
-function ToolCard({
-  href,
-  title,
-  description,
-  icon: Icon,
-}: {
-  href: string;
-  title: string;
-  description: string;
-  icon: React.ElementType;
-}) {
-  return (
-    <Card className="flex h-full flex-col rounded-3xl border-slate-200 shadow-sm">
-      <CardHeader>
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#526649] text-white">
-          <Icon className="h-5 w-5" />
-        </div>
-        <CardTitle className="text-xl">{title}</CardTitle>
-        <CardDescription className="text-sm leading-6">{description}</CardDescription>
-      </CardHeader>
-
-      <CardContent className="mt-auto">
-        <Link href={href}>
-          <Button className="w-full rounded-2xl bg-[#526649] hover:bg-[#44553c]">
-            Abrir ferramenta
-          </Button>
-        </Link>
-      </CardContent>
-    </Card>
-  );
-}
+export const metadata = pageMetadata("Calculadoras financeiras gratuitas online", "Simule juros compostos, reserva de emergência, aposentadoria e financiamento SAC ou Price. Calculadoras financeiras gratuitas para planejar suas decisões.", "/ferramentas");
+const icons = { "juros-compostos": ChartNoAxesCombined, "reserva-emergencia": ShieldCheck, "financiamento-price-sac": House, aposentadoria: Sprout };
 
 export default function FerramentasPage() {
-  return (
-    <div className="min-h-screen bg-[#f7f6f3] text-slate-900">
-      <SiteHeader />
-
-      <main className="mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-8">
-          <Link href="/" className="text-sm font-medium text-slate-900 underline">
-            Voltar para a página inicial
-          </Link>
-        </div>
-
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-          Ferramentas
-        </p>
-        <h1 className="mt-3 text-4xl font-bold tracking-tight">
-          Escolha a ferramenta que deseja usar
-        </h1>
-        <p className="mt-4 max-w-2xl text-slate-600">
-          Aqui você encontra simuladores práticos para apoiar decisões financeiras do dia a dia.
-        </p>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
-          <ToolCard
-            href="/orcamento"
-            title="Orçamento doméstico"
-            description="Conheça a ferramenta para organizar rendas, despesas, categorias, importação por Excel e dashboards da rotina financeira da família."
-            icon={LayoutDashboard}
-          />
-          <ToolCard
-            href="/ferramentas/juros-compostos"
-            title="Juros compostos"
-            description="Simule crescimento patrimonial com aportes, taxa mensal ou anual e gráfico ao longo do tempo."
-            icon={Calculator}
-          />
-          <ToolCard
-            href="/ferramentas/reserva-emergencia"
-            title="Reserva de emergência"
-            description="Calcule uma reserva sugerida com base no seu perfil de trabalho e gasto mensal fixo."
-            icon={ShieldCheck}
-          />
-          <ToolCard
-            href="/ferramentas/financiamento-price-sac"
-            title="Financiamento Price x SAC"
-            description="Compare parcelas, amortização, saldo devedor e juros pagos entre os dois sistemas."
-            icon={Landmark}
-          />
-          <ToolCard
-            href="/ferramentas/aposentadoria"
-            title="Aposentadoria"
-            description="Projete o aporte mensal necessário para alcançar um patrimônio desejado até a aposentadoria."
-            icon={Wallet}
-          />
-        </div>
-      </main>
-    </div>
-  );
+  return <div className={styles.home}><MarketingHeader /><main>
+    <section className={styles.section}>
+      <Link href="/" className={styles.textLink}>Início <ArrowRight size={14} /></Link>
+      <div className={`${styles.sectionHeading} mt-10`}><div><p className={styles.eyebrow}>UM PRÓXIMO PASSO MAIS INFORMADO</p><h1 className="mt-5 max-w-3xl text-4xl font-medium tracking-tight sm:text-5xl">Calculadoras financeiras{" "}<br /><em>para suas decisões.</em></h1></div><p>Gratuitas. Sem cadastro.{" "}<br />Ajuste os valores e explore possibilidades.</p></div>
+      <div className={styles.toolGrid}>{Object.entries(calculators).map(([slug, item]) => { const Icon = icons[slug as CalculatorSlug]; return <Link href={`/ferramentas/${slug}`} className={styles.toolCard} key={slug}><div className={styles.toolIcon}><Icon size={26} strokeWidth={1.5} /><ArrowUpRight size={18} /></div><h2 className="!text-xl !tracking-tight">{item.shortTitle}</h2><p className="mt-4">{item.intro}</p><span className={styles.toolAction}>Abrir calculadora <ArrowRight size={16} /></span></Link>; })}</div>
+    </section>
+    <section className={styles.journeySection}><div className={styles.journeyGrid}><div><p className={styles.eyebrow}>DEPOIS DA SIMULAÇÃO</p><h2>O plano ganha vida{" "}<br /><em>no seu orçamento.</em></h2><p className={styles.journeyIntro}>Registre rendas e despesas, acompanhe contas a pagar e veja sua reserva de emergência evoluir no aplicativo de orçamento doméstico.</p><Link href="/orcamento" className={styles.primaryButton}>Conhecer o aplicativo <ArrowUpRight size={18} /></Link></div><div className="flex flex-col justify-center gap-6"><Wallet size={36} strokeWidth={1.3} /><h3 className="text-2xl tracking-tight">Simular é o começo.{" "}<br />Acompanhar faz parte do caminho.</h3><p className="max-w-md text-sm leading-7 text-[#61695e]">As calculadoras projetam cenários. O orçamento reúne os números da sua rotina para você avaliar o que cabe no mês e ajustar o planejamento.</p><Link href="/orcamento#demonstracao" className={styles.textLink}>Explorar demonstração <ArrowRight size={16} /></Link></div></div></section>
+    <section className={styles.section}><p className={styles.eyebrow}>CONHEÇA AS PREMISSAS</p><h2 className="mt-5">Números com contexto.</h2><p className="mt-5 max-w-3xl text-sm leading-8 text-[#61695e]">Cada calculadora explica como o resultado é obtido e quais hipóteses entram na simulação. Use os valores como referência para comparar cenários, considerando que taxas, custos e sua realidade podem mudar.</p><Link href="/conteudos" className={`${styles.textLink} mt-6`}>Entenda os conceitos por trás das ferramentas <ArrowRight size={16} /></Link></section>
+  </main></div>;
 }

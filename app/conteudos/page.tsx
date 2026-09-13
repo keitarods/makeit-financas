@@ -1,12 +1,10 @@
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Landmark, TrendingUp, ShieldCheck, Wallet } from "lucide-react";
 import SiteHeader from "@/components/site-header";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Conteúdos",
-};
+
 
 function ContentCard({
   href,
@@ -37,6 +35,8 @@ function ContentCard({
     </Link>
   );
 }
+
+export const metadata = pageMetadata("Educação financeira: guias e conceitos", "Entenda juros compostos, reserva de emergência, aposentadoria e financiamento. Guias para usar as calculadoras e planejar suas finanças.", "/conteudos");
 
 export default function ConteudosPage() {
   return (

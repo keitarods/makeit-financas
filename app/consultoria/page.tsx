@@ -1,16 +1,14 @@
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MessageCircle } from "lucide-react";
 import SiteHeader from "@/components/site-header";
 import { getWhatsAppLink } from "@/lib/contact";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Consultoria",
-  description:
-    "Agende uma conversa para orientação prática em organização financeira, investimentos e construção de patrimônio.",
-};
+
+
+export const metadata = pageMetadata("Consultoria financeira pessoal", "Conheça o acompanhamento financeiro de Matheus Keitaro para organizar sua situação, esclarecer objetivos e construir um planejamento.", "/consultoria");
 
 export default function ConsultoriaPage() {
   const whatsappLink = getWhatsAppLink();

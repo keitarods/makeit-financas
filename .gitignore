@@ -41,3 +41,30 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local editor and assistant state
+*.code-workspace
+/.idea/
+/.codex/
+/.agents/
+
+# Credentials and local certificates
+*.key
+*.p12
+*.pfx
+*.keystore
+.npmrc
+.netrc
+
+# Local databases, exports and backups
+*.sqlite
+*.sqlite3
+*.sqlite-wal
+*.sqlite-shm
+*.db
+*.dump
+*.bak
+*.backup
+*.log
+/backups/
+/dumps/

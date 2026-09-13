@@ -1,7 +1,10 @@
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { TrendingUp } from "lucide-react";
 import SiteHeader from "@/components/site-header";
+
+export const metadata = pageMetadata("Juros compostos: como funcionam os aportes e o tempo", "Entenda como funcionam os juros compostos, a fórmula e o efeito dos aportes no patrimônio. Explore exemplos na calculadora gratuita.", "/conteudos/juros-compostos");
 
 export default function JurosCompostosConteudoPage() {
   return (
@@ -23,7 +26,7 @@ export default function JurosCompostosConteudoPage() {
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#526649] text-white">
               <TrendingUp className="h-5 w-5" />
             </div>
-            <CardTitle className="text-3xl">Juros compostos</CardTitle>
+            <h1 className="text-3xl font-medium tracking-tight">Juros compostos</h1>
           </CardHeader>
 
           <CardContent className="space-y-6 text-slate-700 leading-8">

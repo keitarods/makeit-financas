@@ -1,0 +1,50 @@
+.workspace { display: grid; grid-template-columns: 228px minmax(0, 1fr); max-width: 1440px; margin: auto; }
+.sidebar { padding: 35px 20px; border-right: 1px solid #d8ded2; background: #eef1e7; }
+.workspaceTitle { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+.sidebar > p { margin: 35px 10px 12px; font-size: 9px; letter-spacing: 1.2px; color: #64715b; }
+.sidebar nav { display: grid; gap: 7px; }
+.sidebar nav a { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 12px; border-radius: 9px; font-size: 12px; }
+.sidebar nav a:hover { background: #e0e6d6; }
+.sidebar nav a[aria-current=page] { background: #526649; color: white; }
+.sidebar nav svg { flex-shrink: 0; }
+.sidebarApp { margin-top: 35px; padding: 22px 15px; border: 1px solid #d2dbc6; border-radius: 12px; background: #f7f8f4; }
+.sidebarApp h2 { font-size: 20px; letter-spacing: -.6px; margin: 17px 0 12px; }
+.sidebarApp p { font-size: 12px; line-height: 1.7; color: #61695e; }
+.sidebarApp a { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 11px; font-weight: 600; }
+.freeNote { display: flex; gap: 7px; align-items: center; font-size: 10px; color: #61695e; margin: 24px 10px; }
+.main { padding: 28px 34px 50px; min-width: 0; }
+.breadcrumb { display: flex; gap: 9px; flex-wrap: wrap; font-size: 10px; color: #61695e; }
+.breadcrumb a:hover { text-decoration: underline; }
+.heading { padding: 30px 0; }
+.heading > p:first-child, .kicker { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; color: #526649; }
+.heading h1 { font-size: clamp(27px, 3vw, 40px); line-height: 1.2; letter-spacing: -1.4px; font-weight: 500; margin: 15px 0; }
+.heading > p:last-child { font-size: 13px; line-height: 1.8; color: #61695e; max-width: 700px; }
+.calculator { scroll-margin-top: 100px; }
+.calculator :global([data-slot=card]) { border: 1px solid #d8ded2; box-shadow: none; --tw-ring-shadow: 0 0 transparent; border-radius: 14px; color: #243b2b; }
+.calculator > :global([data-slot=card]) { padding: 0; background: transparent; border: 0; gap: 0; overflow: visible; }
+.calculator > :global([data-slot=card]) > :global([data-slot=card-header]) { padding: 20px 24px; border: 1px solid #d8ded2; border-bottom: none; border-radius: 14px 14px 0 0; background: white; }
+.calculator > :global([data-slot=card]) > :global([data-slot=card-header]) :global([data-slot=card-title]) { font-size: 16px; }
+.calculator > :global([data-slot=card]) > :global([data-slot=card-header]) :global([data-slot=card-description]) { font-size: 12px; line-height: 1.7; }
+.calculator > :global([data-slot=card]) > :global([data-slot=card-content]) { padding: 0; }
+.calculator :global(.calculator-fields) { padding: 5px 24px 24px; background: white; border: 1px solid #d8ded2; border-top: none; border-radius: 0 0 14px 14px; }
+.calculator label { display: block; font-size: 12px; color: #53624b; }
+.calculator input, .calculator select { min-height: 46px; background: #f9faf6; border: 1px solid #d8ded2; border-radius: 8px; color: #243b2b; box-shadow: none; }
+.calculator input:focus-visible, .calculator select:focus-visible { outline: 2px solid #526649; outline-offset: 2px; }
+.calculator :global(.calculator-results) { gap: 12px; }
+.calculator :global(.calculator-results) > :global([data-slot=card]) { background: #eef3e8; min-width: 0; }
+.calculator :global(.calculator-results) > :global([data-slot=card]):last-child { background: #526649; color: white; }
+.calculator :global(.calculator-results) > :global([data-slot=card]):last-child p { color: white; }
+.calculator :global(.calculator-results) :global([data-slot=card-content]) { padding: 8px 18px; }
+.calculator :global(.calculator-results) p { font-size: 12px; }
+.calculator :global(.calculator-results) p:nth-child(2) { font-size: clamp(19px, 2vw, 28px); letter-spacing: -.7px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.calculator :global(.recharts-wrapper) { font-size: 11px; }
+.calculator table { font-variant-numeric: tabular-nums; }
+.explanation { display: grid; grid-template-columns: .85fr 1.15fr; gap: 35px; margin: 40px 0; padding-top: 30px; border-top: 1px solid #d8ded2; }
+.explanation h2 { font-size: 20px; line-height: 1.35; letter-spacing: -.5px; margin: 12px 0 18px; }
+.explanation p:not(.kicker), .explanation li { font-size: 12px; line-height: 1.9; color: #61695e; margin-bottom: 12px; }
+.explanation ol { padding-left: 18px; list-style: decimal; }
+.explanation a { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; margin-top: 8px; }
+.budgetCta { padding: 26px; background: #e8eddf; border: 1px solid #d8ded2; border-radius: 14px; display: flex; align-items: center; gap: 20px; }
+.budgetCta > svg { flex-shrink: 0; }.budgetCta > div { flex: 1; }.budgetCta h2 { font-size: 23px; letter-spacing: -.7px; margin: 8px 0; }.budgetCta p { font-size: 12px; line-height: 1.7; color: #53624b; }.budgetCta p:first-child { font-size: 8px; letter-spacing: 1px; }.budgetCta a { display: flex; align-items: center; gap: 10px; background: #526649; color: white; padding: 14px 16px; border-radius: 7px; font-size: 11px; white-space: nowrap; }
+@media(max-width:1100px) { .workspace { grid-template-columns: 195px minmax(0, 1fr); }.sidebar { padding: 30px 12px; }.main { padding: 25px 22px 40px; }.budgetCta { flex-wrap: wrap; }.budgetCta a { margin-left: 51px; }.calculator :global(.calculator-results) { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { .workspace { display: block; }.sidebar { padding: 16px 20px; border-right: 0; border-bottom: 1px solid #d8ded2; }.workspaceTitle, .sidebar > p, .sidebarApp, .freeNote { display: none; }.sidebar nav { display: flex; overflow-x: auto; gap: 8px; }.sidebar nav a { white-space: nowrap; font-size: 11px; padding: 12px; }.main { padding: 22px 18px 35px; }.heading { padding: 25px 0; }.heading h1 { font-size: 29px; }.calculator :global(.calculator-fields) { padding: 5px 18px 20px; }.calculator > :global([data-slot=card]) > :global([data-slot=card-header]) { padding: 20px 18px; }.calculator :global(.calculator-results) { grid-template-columns: 1fr; }.explanation { grid-template-columns: 1fr; gap: 15px; }.budgetCta { padding: 22px; }.budgetCta > div { flex-basis: 100%; }.budgetCta a { margin: 0; }.budgetCta h2 { font-size: 24px; } }

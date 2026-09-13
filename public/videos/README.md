@@ -1,19 +1,24 @@
-# Vídeo do hero de orçamento
+# Vídeos de fundo do orçamento
 
-Coloque aqui os vídeos de fundo da página `/orcamento` usando estes nomes:
+A página `/orcamento` usa estes arquivos, em sequência:
 
 - `orcamento-family-hero-1.mp4`
 - `orcamento-family-hero-2.mp4`
 - `orcamento-family-hero-3.mp4`
 - `orcamento-family-hero-4.mp4`
 
-Opcionalmente, você também pode incluir versões WebM com os mesmos números:
+O fundo tem desfoque e uma camada clara para manter o texto legível. A imagem
+`public/images/orcamento-family-hero.png` aparece antes da reprodução e permanece
+como alternativa quando o vídeo falha ou o usuário prefere movimento reduzido.
 
-- `orcamento-family-hero-1.webm`
-- `orcamento-family-hero-2.webm`
-- `orcamento-family-hero-3.webm`
-- `orcamento-family-hero-4.webm`
+O vídeo começa após o carregamento inicial da página, com um atraso de 800 ms.
+Somente o arquivo atual é associado ao player; os seguintes não são pré-carregados.
+A reprodução é silenciosa, possui botão de pausa e pausa automaticamente quando
+o topo sai da tela ou a aba do navegador fica oculta.
 
-O navegador tentará carregar WebM primeiro quando existir e MP4 depois. A página toca o vídeo 1, ao finalizar inicia o vídeo 2, depois o 3, depois o 4, e depois volta para o vídeo 1.
+A economia de dados e conexões 2G, quando informadas pelo navegador, desativam o
+vídeo. No celular, a reprodução usa `playsInline`. Não há versões WebM configuradas.
 
-Enquanto um vídeo não existir ou estiver carregando, a página usa `public/images/orcamento-family-hero.png` como fallback.
+O vídeo é decorativo: título, descrição, links e demonstração continuam em HTML.
+Após publicar, acompanhe as métricas reais no Vercel Speed Insights/Search Console;
+estes cuidados reduzem o custo da mídia, mas não garantem pontuação ou posição na busca.

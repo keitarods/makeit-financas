@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import MarketingFooter from "@/components/marketing-footer";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  authors: [{ name: "Matheus Keitaro" }],
   title: {
     default: "Matheus Keitaro Finanças",
     template: "%s | Matheus Keitaro Finanças",
@@ -33,6 +37,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body>
         {children}
+        <MarketingFooter />
 
         <Analytics />
         <SpeedInsights />

@@ -1,434 +1,61 @@
-import Image from "next/image";
-import type { Metadata } from "next";
-import {
-  ArrowRight,
-  BarChart3,
-  CalendarClock,
-  CheckCircle2,
-  FileSpreadsheet,
-  HelpCircle,
-  LineChart,
-  PieChart,
-  ReceiptText,
-  ShieldCheck,
-  Tags,
-  Upload,
-  WalletCards,
-} from "lucide-react";
-import SiteHeader from "@/components/site-header";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, CalendarDays, ChartNoAxesCombined, Check, FileSpreadsheet, ShieldCheck, Wallet } from "lucide-react";
 import HeroVideoPlaylist from "@/components/hero-video-playlist";
+import MarketingHeader from "@/components/marketing-header";
 import OrcamentoAppPreview from "@/components/orcamento-app-preview";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import BudgetAppLink from "@/components/budget-app-link";
+import { BUDGET_APP_URL, SITE_URL, pageMetadata } from "@/lib/site";
+import home from "@/app/home.module.css";
+import styles from "./orcamento.module.css";
 
-export const metadata: Metadata = {
-  title: "Orçamento Doméstico",
-  description:
-    "Organize renda, gastos, categorias, importações e evolução mensal da sua família em uma ferramenta visual de orçamento doméstico.",
-};
-
-const benefits = [
-  "Clareza sobre renda e gastos",
-  "Categorias organizadas",
-  "Evolução mensal",
-  "Importação por Excel",
-  "Dashboard visual",
-];
-
+export const metadata = pageMetadata(
+  "Aplicativo de orçamento doméstico e controle financeiro",
+  "Organize rendas, despesas e contas a pagar. Acompanhe gastos por categoria e sua reserva de emergência no aplicativo de orçamento doméstico OMKF.",
+  "/orcamento",
+);
 const features = [
-  {
-    title: "Dashboard",
-    icon: WalletCards,
-    description: "Indicadores de renda, gastos, saldo e percentual comprometido.",
-  },
-  {
-    title: "Rendas e despesas",
-    icon: ReceiptText,
-    description: "Cadastro de entradas, saídas, datas, fontes e descrições.",
-  },
-  {
-    title: "Tipos de despesa",
-    icon: Tags,
-    description: "Categorias padrão e tipos personalizados para sua rotina.",
-  },
-  {
-    title: "Gastos ideais",
-    icon: BarChart3,
-    description: "Comparação entre orçamento real e distribuição planejada.",
-  },
-  {
-    title: "Importação",
-    icon: FileSpreadsheet,
-    description: "Carga por Excel com validações e prevenção de inconsistências.",
-  },
-  {
-    title: "Planos mensal/anual",
-    icon: CalendarClock,
-    description: "Controle de teste grátis, pagamento pendente e licença ativa.",
-  },
+  { icon: Wallet, title: "Rendas e despesas no mesmo lugar", description: "Registre suas entradas, classifique os gastos e enxergue o saldo disponível para suas próximas decisões." },
+  { icon: CalendarDays, title: "Contas a pagar, sem perder de vista", description: "Organize vencimentos, valores previstos e pagamentos para acompanhar os compromissos do mês." },
+  { icon: ChartNoAxesCombined, title: "Seu planejamento encontra a realidade", description: "Compare gastos ideais e realizados por categoria. Explore estatísticas para entender os padrões da sua rotina." },
+  { icon: ShieldCheck, title: "Uma reserva com direção", description: "Acompanhe sua meta de reserva de emergência, registre aportes e retiradas e veja onde os valores estão alocados." },
 ];
-
-const steps = [
-  {
-    title: "Importe ou cadastre",
-    description: "Comece com Excel ou registre rendas e despesas manualmente.",
-    icon: Upload,
-  },
-  {
-    title: "Classifique por categoria",
-    description: "Separe moradia, mercado, transporte, lazer e outras despesas.",
-    icon: Tags,
-  },
-  {
-    title: "Acompanhe a evolução",
-    description: "Veja saldo, gastos por grupo e comparação mensal em gráficos.",
-    icon: LineChart,
-  },
-];
-
-const overviewStats = [
-  {
-    title: "Dashboard interativo",
-    description: "Resumo visual da saúde financeira.",
-  },
-  {
-    title: "Lançamento fácil",
-    description: "Cadastro rápido de despesas.",
-  },
-  {
-    title: "Visão multinível",
-    description: "Categorias e detalhes personalizados.",
-  },
-];
-
 const faqs = [
-  {
-    question: "Preciso instalar algo?",
-    answer:
-      "Não. A proposta é funcionar direto pelo navegador, sem instalação no computador ou celular.",
-  },
-  {
-    question: "Funciona no celular?",
-    answer:
-      "Sim. A ferramenta está sendo pensada para uso no celular e no computador, com visual simples para acompanhar a rotina da família.",
-  },
-  {
-    question: "Tem período de teste?",
-    answer:
-      "A ideia é permitir que você conheça a ferramenta antes de decidir o melhor plano para sua realidade.",
-  },
-  {
-    question: "Consigo importar dados?",
-    answer:
-      "Sim. A ferramenta prevê importação por Excel para acelerar o cadastro de despesas, rendas e histórico mensal.",
-  },
-  {
-    question: "Meus dados ficam salvos?",
-    answer:
-      "Sim. A proposta é manter seus dados salvos com segurança para acompanhar evolução, categorias e comparativos ao longo do tempo.",
-  },
+  ["O que é um aplicativo de orçamento doméstico?", "É uma ferramenta para reunir rendas, despesas e compromissos financeiros. No OMKF, você acompanha categorias, compara gastos planejados com realizados e visualiza sua reserva de emergência em um só lugar."],
+  ["Preciso instalar o aplicativo?", "Não. O acesso é pelo navegador, no computador ou no celular. Ao acessar o aplicativo, você pode entrar na sua conta ou escolher a opção de cadastro."],
+  ["O aplicativo de orçamento é gratuito?", "O aplicativo tem acesso por licença e uma área de planos. Consulte no próprio aplicativo as condições de teste, os valores e os planos disponíveis antes de contratar. As calculadoras deste site são gratuitas e independentes da assinatura."],
+  ["Posso importar minha planilha de gastos?", "Sim. O aplicativo oferece importação por Excel, com um modelo de planilha e validação dos dados. Use o formato indicado no importador para trazer os registros."],
+  ["Consigo acompanhar minha reserva de emergência?", "Sim. A área de reserva permite configurar o perfil de trabalho, acompanhar a meta e registrar alocações, aportes e retiradas. Você também pode fazer uma estimativa inicial na calculadora gratuita do site."],
+  ["O que aparece nesta demonstração?", "Uma versão simplificada e interativa da interface do aplicativo, com dados fictícios. Você pode alternar as áreas e ocultar valores. Para cadastrar, importar ou salvar seus próprios dados, acesse o aplicativo e entre na sua conta."],
 ];
-
-function StartCta({ variant = "primary" }: { variant?: "primary" | "secondary" }) {
-  return (
-    <Button
-      asChild
-      className={
-        variant === "primary"
-          ? "rounded-2xl bg-white px-6 py-6 text-slate-950 hover:bg-white"
-          : "rounded-2xl bg-[#526649] px-6 py-6 text-white hover:bg-[#526649]"
-      }
-    >
-      <a
-        href="https://orcamento.omatheuskeitarofinancas.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Começar agora
-        <ArrowRight className="h-4 w-4" />
-      </a>
-    </Button>
-  );
-}
 
 export default function OrcamentoPage() {
-  return (
-    <div className="min-h-screen bg-[#f7f6f3] text-slate-900">
-      <SiteHeader />
-
-      <main>
-        <section className="relative isolate min-h-[calc(100vh-77px)] overflow-hidden bg-slate-950">
-          <div className="absolute inset-0">
-            <Image
-              src="/images/orcamento-family-hero.png"
-              alt="Família conversando sobre orçamento doméstico em casa"
-              fill
-              priority
-              className="hero-media-pan object-cover"
-              sizes="100vw"
-            />
-            <HeroVideoPlaylist poster="/images/orcamento-family-hero.png" />
-          </div>
-          <div className="absolute inset-0 bg-slate-950/65" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_42%,rgba(82,102,73,0.22),transparent_34%),linear-gradient(90deg,rgba(2,6,23,0.92)_0%,rgba(2,6,23,0.72)_42%,rgba(2,6,23,0.28)_100%)]" />
-
-          <div className="relative mx-auto grid min-h-[calc(100vh-77px)] max-w-7xl items-center gap-10 px-6 py-16 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="max-w-3xl text-white">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                Organize o orçamento da sua família com clareza
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-100">
-                Rendas, despesas, categorias, importação por Excel e dashboard visual em um só
-                lugar para transformar conversa financeira em decisão prática.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <StartCta />
-              </div>
-
-              <div className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3">
-                {overviewStats.map((item) => (
-                  <div
-                    key={item.title}
-                    className="min-h-[116px] rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur"
-                  >
-                    <p className="text-lg font-semibold leading-snug text-white">
-                      {item.title}
-                    </p>
-                    <p className="mt-2 text-xs leading-5 text-slate-300">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="hidden justify-end lg:flex">
-              <div className="relative ml-auto w-full max-w-[360px] rounded-[2.75rem] border border-white/20 bg-slate-950 p-3 shadow-2xl shadow-black/40">
-                <div className="absolute left-1/2 top-2 z-10 h-1.5 w-20 -translate-x-1/2 rounded-full bg-white/20" />
-                <div className="overflow-hidden rounded-[2.1rem] bg-white p-4 text-slate-900 shadow-xl">
-                  <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-                    <div>
-                      <p className="text-xs text-slate-500">Resumo familiar</p>
-                      <p className="mt-1 text-xl font-semibold">Maio</p>
-                    </div>
-                    <PieChart className="h-7 w-7 text-[#526649]" />
-                  </div>
-
-                  <div className="mt-4 grid grid-cols-3 gap-2">
-                    {[
-                      ["Rendas", "R$ 8.400"],
-                      ["Gastos", "R$ 5.920"],
-                      ["Saldo", "R$ 2.480"],
-                    ].map(([label, value]) => (
-                      <div key={label} className="rounded-2xl bg-slate-50 p-3">
-                        <p className="text-xs text-slate-500">{label}</p>
-                        <p className="mt-2 text-base font-semibold leading-tight">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 space-y-3">
-                    {[
-                      ["Moradia", "42%", "w-[42%]"],
-                      ["Mercado", "28%", "w-[28%]"],
-                      ["Transporte", "18%", "w-[18%]"],
-                    ].map(([label, value, width]) => (
-                      <div key={label}>
-                        <div className="flex justify-between text-sm">
-                          <span>{label}</span>
-                          <span className="text-slate-500">{value}</span>
-                        </div>
-                        <div className="mt-2 h-2 rounded-full bg-slate-100">
-                          <div className={`h-2 rounded-full bg-[#526649] ${width}`} />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-5 rounded-2xl border border-slate-100 p-4">
-                    <div className="flex items-center gap-2 text-sm font-medium">
-                      <LineChart className="h-4 w-4 text-[#526649]" />
-                      Evolução mensal
-                    </div>
-                    <div className="mt-4 flex h-24 items-end gap-2">
-                      {[35, 55, 42, 68, 60, 78, 72].map((height, index) => (
-                        <div
-                          key={index}
-                          className="flex-1 rounded-t-md bg-[#526649]/80"
-                          style={{ height: `${height}%` }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-y border-slate-200 bg-slate-50">
-          <div className="mx-auto grid max-w-7xl gap-8 px-6 py-16 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-                Problema
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                Você sabe para onde seu dinheiro vai todo mês?
-              </h2>
-            </div>
-            <p className="max-w-3xl text-lg leading-8 text-slate-600">
-              Quando as despesas ficam espalhadas entre cartão, conta corrente, Pix e anotações
-              soltas, a família perde clareza. A ferramenta nasce para organizar essa visão em um
-              lugar só, com leitura rápida e rotina simples.
-            </p>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-16">
-          <div>
-            <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-                  Prévia do app
-                </p>
-                <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-                  Uma prévia inspirada no aplicativo real
-                </h2>
-              </div>
-              <p className="max-w-xl leading-8 text-slate-600">
-                O app já trabalha com ambiente interno, status de licença, importação por planilha,
-                navegação por abas e indicadores do orçamento doméstico.
-              </p>
-            </div>
-
-            <div className="mt-10">
-              <OrcamentoAppPreview />
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-16">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-                Benefícios
-              </p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                Mais contexto para decidir melhor em família
-              </h2>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {benefits.map((benefit) => (
-                <div
-                  key={benefit}
-                  className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-                >
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#526649]" />
-                  <p className="font-medium">{benefit}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="border-y border-slate-200 bg-slate-50">
-          <div className="mx-auto max-w-7xl px-6 py-16">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-              Como funciona
-            </p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-              Um fluxo simples para manter o orçamento vivo
-            </h2>
-
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
-              {steps.map(({ title, description, icon: Icon }, index) => (
-                <div key={title} className="rounded-2xl border border-slate-200 bg-white p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#526649] text-white">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <span className="text-sm font-semibold text-slate-400">
-                      0{index + 1}
-                    </span>
-                  </div>
-                  <p className="mt-6 text-lg font-semibold">{title}</p>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-slate-950 text-white">
-          <div className="mx-auto max-w-7xl px-6 py-16">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#d8e7cc]">
-              Recursos
-            </p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl">
-              Tudo que você precisa para acompanhar o orçamento
-            </h2>
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {features.map(({ title, description, icon: Icon }) => (
-                <Card key={title} className="rounded-2xl border-white/10 bg-white/10 text-white">
-                  <CardContent className="p-5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#d8e7cc] text-[#526649]">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <p className="mt-5 text-lg font-semibold">{title}</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">{description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-6 py-16">
-          <div className="grid gap-8 rounded-[2rem] border border-slate-200 bg-slate-50 p-8 md:grid-cols-[auto_1fr] md:p-10">
-            <ShieldCheck className="h-10 w-10 text-[#526649]" />
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">
-                Prova e autoridade
-              </p>
-              <p className="mt-3 max-w-4xl text-2xl font-semibold leading-9">
-                Desenvolvido por Matheus Keitaro, engenheiro, investidor e criador de conteúdos de
-                educação financeira.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-t border-slate-200 bg-slate-50">
-          <div className="mx-auto max-w-5xl px-6 py-16">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-slate-500">FAQ</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Dúvidas frequentes
-            </h2>
-
-            <div className="mt-8 space-y-3">
-              {faqs.map((faq) => (
-                <details
-                  key={faq.question}
-                  className="rounded-2xl border border-slate-200 bg-white p-5"
-                >
-                  <summary className="flex cursor-pointer list-none items-center gap-3 font-semibold">
-                    <HelpCircle className="h-5 w-5 text-[#526649]" />
-                    {faq.question}
-                  </summary>
-                  <p className="mt-4 leading-7 text-slate-600">{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-
-            <div className="mt-10">
-              <StartCta variant="secondary" />
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
-  );
+  const structuredData = { "@context": "https://schema.org", "@type": "WebPage", name: "Aplicativo de orçamento doméstico OMKF", url: `${SITE_URL}/orcamento`, description: "Controle de rendas, despesas, contas a pagar e reserva de emergência.", mainEntity: { "@type": "WebApplication", name: "OMKF Orçamento Doméstico", url: BUDGET_APP_URL, applicationCategory: "FinanceApplication", operatingSystem: "Web", browserRequirements: "Navegador com JavaScript", inLanguage: "pt-BR", featureList: ["Rendas e despesas", "Contas a pagar", "Importação por Excel", "Gastos ideais", "Reserva de emergência", "Estatísticas"], creator: { "@type": "Person", name: "Matheus Keitaro" } } };
+  return <div className={home.home}>
+    <a href="#principal" className={home.skipLink}>Pular para o conteúdo</a>
+    <MarketingHeader />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+    <main id="principal">
+      <div className={styles.heroStage}>
+      <HeroVideoPlaylist poster="/images/orcamento-family-hero.png" />
+      <section className={styles.hero}>
+        <nav className={styles.breadcrumb} aria-label="Caminho da página"><Link href="/">Início</Link><span>/</span><span>Orçamento doméstico</span></nav>
+        <p className={home.eyebrow}>OMKF · FINANÇAS NO DIA A DIA</p>
+        <h1>Seu aplicativo de{" "}<br /><em>orçamento doméstico.</em></h1>
+        <p className={styles.intro}>Menos contas espalhadas. Mais clareza sobre seu dinheiro. Organize rendas, despesas e compromissos para planejar o mês com uma visão completa.</p>
+        <div className={styles.actions}><BudgetAppLink placement="budget_hero" className={home.primaryButton}>Começar no aplicativo</BudgetAppLink><a href="#demonstracao" className={home.textLink}>Explorar a demonstração <ArrowDown size={16} /></a></div>
+        <div className={styles.benefits}><span><Check size={14} /> Acesso pelo navegador</span><span><Check size={14} /> Computador e celular</span><span><Check size={14} /> Dados organizados por período</span></div>
+        <p className={styles.conditions}>Entre ou cadastre-se no aplicativo. Consulte as condições de acesso e os planos disponíveis.</p>
+      </section>
+      </div>
+      <section id="demonstracao" className={styles.demoSection} aria-label="Demonstração do aplicativo de orçamento doméstico"><OrcamentoAppPreview /></section>
+      <section className={home.section}>
+        <div className={home.sectionHeading}><div><p className={home.eyebrow}>UMA ROTINA FINANCEIRA MAIS CLARA</p><h2>Não é só registrar.{" "}<br />É entender e acompanhar.</h2></div><p>Do primeiro lançamento ao plano para o futuro,{" "}<br />cada informação ajuda a compor o todo.</p></div>
+        <div className={styles.features}>{features.map(({ icon: Icon, title, description }) => <article key={title}><Icon size={27} strokeWidth={1.5} /><h3>{title}</h3><p>{description}</p></article>)}</div>
+      </section>
+      <section className={styles.howSection}><div className={styles.howInner}><div><p className={home.eyebrow}>DA PLANILHA PARA UMA VISÃO COMPLETA</p><h2>Seu primeiro mês{" "}<br /><em>começa aqui.</em></h2><div className={styles.importNote}><FileSpreadsheet size={25} /><p>Já usa Excel? Utilize o modelo de importação do aplicativo para trazer seus registros.</p></div></div><ol>{[["Acesse sua conta", "Entre ou escolha a opção de cadastro e confira as condições de acesso."], ["Organize o que entra e o que sai", "Cadastre suas rendas e despesas ou importe pelo modelo de planilha."], ["Acompanhe e ajuste", "Consulte o dashboard, compare categorias e revise seus compromissos e sua reserva."]].map(([title, description], i) => <li key={title}><span>0{i + 1}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ol></div></section>
+      <section className={styles.comparison}><div><p className={home.eyebrow}>DO CENÁRIO AO ACOMPANHAMENTO</p><h2>Simule uma decisão.{" "}<br />Organize sua rotina.</h2><p>As calculadoras ajudam a explorar possibilidades. O aplicativo ajuda a acompanhar as entradas, os gastos e os objetivos ao longo do tempo.</p></div><div><Link href="/ferramentas/reserva-emergencia"><ShieldCheck size={22} /><span>Quanto preciso guardar?<small>Calcule sua reserva de emergência</small></span><ArrowRight size={17} /></Link><Link href="/ferramentas/juros-compostos"><ChartNoAxesCombined size={22} /><span>Como meus aportes podem evoluir?<small>Simule juros compostos</small></span><ArrowRight size={17} /></Link></div></section>
+      <section className={home.faqSection}><div><p className={home.eyebrow}>ANTES DE COMEÇAR</p><h2>Dúvidas sobre o{" "}<br />orçamento doméstico</h2></div><div>{faqs.map(([question, answer]) => <details className={home.faq} key={question}><summary>{question}<ArrowDown size={16} /></summary><p>{answer}</p></details>)}</div></section>
+      <section className={home.finalCta}><div><p className={home.eyebrow}>MAIS CLAREZA, TODOS OS MESES</p><h2>Seu dinheiro merece{" "}<br /><em>um lugar para se organizar.</em></h2><p>Desenvolvido por Matheus Keitaro, engenheiro e educador financeiro.</p></div><div className={home.finalActions}><BudgetAppLink placement="budget_footer" className={home.lightButton}>Acessar o aplicativo</BudgetAppLink><a href="#demonstracao">Rever a demonstração <ArrowRight size={16} /></a></div></section>
+    </main>
+  </div>;
 }

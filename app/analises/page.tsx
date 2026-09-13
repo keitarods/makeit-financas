@@ -1,4 +1,7 @@
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
+
+export const metadata = { ...pageMetadata("Análises de empresas e ativos", "Espaço de análises de balanços, empresas e ativos por Matheus Keitaro. Novas publicações em breve.", "/analises"), robots: { index: false, follow: true } };
 
 export default function AnalisesPage() {
   return (
@@ -16,7 +19,7 @@ export default function AnalisesPage() {
         Análises realizadas e compartilhadas
       </h1>
       <p className="mt-4 max-w-2xl text-slate-600">
-        Aqui ficarão suas análises publicadas sobre ativos, cenários, empresas e oportunidades.
+        Um espaço para aprofundar a leitura de balanços, empresas e ativos. Novas publicações em breve.
       </p>
     </main>
   );

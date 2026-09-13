@@ -1,0 +1,7 @@
+.media { position: absolute; inset: 0; pointer-events: none; }
+.visual { position: absolute; inset: 0; overflow: hidden; }
+.visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #f7f6f0b3 0%, #f7f6f0bd 60%, #f7f6f0 100%); }
+.poster, .video { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: center 45%; filter: blur(2px); transform: scale(1.02); opacity: .65; }
+.control { position: absolute; bottom: 12px; right: max(24px, calc((100% - 1128px) / 2)); z-index: 2; display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 8px 12px; border: 1px solid #d8ded2; border-radius: 7px; background: #f7f6f0e6; color: #243b2b; font-size: 10px; pointer-events: auto; cursor: pointer; }
+.control:hover { background: white; }
+@media (max-width: 760px) { .control { right: 20px; bottom: 8px; } }

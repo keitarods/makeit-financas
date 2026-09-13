@@ -1,15 +1,11 @@
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookMarked } from "lucide-react";
 import SiteHeader from "@/components/site-header";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "E-books",
-  description:
-    "Materiais práticos sobre educação financeira, organização, investimentos e construção de patrimônio.",
-};
+
 
 type Ebook = {
   title: string;
@@ -89,6 +85,8 @@ function EbookCard({ ebook }: { ebook: Ebook }) {
     </Card>
   );
 }
+
+export const metadata = pageMetadata("E-books de educação financeira", "Explore e-books sobre reserva de emergência, cartão de crédito, renda fixa e ações para aprofundar sua educação financeira.", "/ebooks");
 
 export default function EbooksPage() {
   return (

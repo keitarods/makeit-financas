@@ -1,13 +1,11 @@
+import { pageMetadata } from "@/lib/site";
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { BookOpen } from "lucide-react";
 import SiteHeader from "@/components/site-header";
-import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Livros recomendados",
-};
+
 
 type Book = {
   title: string;
@@ -92,6 +90,8 @@ function BookCard({ book }: { book: Book }) {
     </Card>
   );
 }
+
+export const metadata = pageMetadata("Livros sobre finanças e investimentos", "Conheça a seleção de livros de educação financeira de Matheus Keitaro para estudar hábitos, dinheiro e construção de patrimônio.", "/livros");
 
 export default function LivrosPage() {
   return (
